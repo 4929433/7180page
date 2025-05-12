@@ -1,0 +1,113 @@
+.info-section {
+  padding: 2rem;
+  background-color: #fdfdfb;
+}
+.info-section h3 {
+  font-size: 2rem;
+}
+.info-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.info-text {
+  flex: 1 1 300px;
+  min-width: 280px;
+}
+
+.info-img {
+  flex: 1 1 300px;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.service-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.service-list li::before {
+  margin-right: 0.5rem;
+}
+
+/* Responsive: stack items on mobile */
+@media (max-width: 768px) {
+  .info-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-img {
+    max-width: 90%;
+  }
+
+  .info-text {
+    text-align: center;
+  }
+}
+
+
+
+
+.image-overlay-container {
+  position: relative;
+  width: flex; /* 你可以自定义图片宽度 */
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.image-overlay-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* 叠加文本样式 */
+.overlay-text {
+  position: absolute;
+  top:3rem;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 12px 12px;
+  font-size: 2rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.overlay-text2 {
+  position: absolute;
+  top: 7rem;
+  left: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 12px 12px;
+  font-size: 1rem;
+  border-radius: 4px;
+  font-weight: 500;
+}

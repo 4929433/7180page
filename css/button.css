@@ -1,4 +1,4 @@
-.btn-tab {
+.BTN {
     display: inline-block;
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
@@ -17,20 +17,20 @@
   }
   
   /* 悬停时：边框发光、转圈动画 */
-  .btn-tab:hover {
+  .BTN:hover {
     border-color: var(--text-color);
     box-shadow: 0 0 8px var(--accent-color), 0 0 12px var(--accent-color);
   }
   
   /* 激活点击状态 */
-  .btn-tab:active {
+  .BTN:active {
     transform: scale(0.95);
     background-color: var(--secondary-color);
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
   }
   
   /* 可选：可聚焦样式增强辅助功能 */
-  .btn-tab:focus {
+  .BTN:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
   }
