@@ -1,0 +1,511 @@
+/* 全局样式 */
+:root {
+    --primary-color: #14374a;
+    --secondary-color: #e05e32;
+    --light-color: #f5f5f5;
+    --dark-color: #333;
+    --gray-color: #ddd;
+    --text-color: #333;
+    --border-radius: 4px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+}
+
+.container {
+    width: 100vw;
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 顶部导航栏样式 */
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    width: 100vw;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.logo h1 a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.logo h1 a:hover {
+    color: var(--gray-color);
+}
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-menu li {
+    margin-left: 2rem;
+}
+
+.nav-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: var(--gray-color);
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+}
+
+.nav-menu a.active {
+    color: white;
+}
+
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s;
+}
+
+/* 主内容区域样式 */
+.main-content {
+    display: flex;
+    min-height: calc(100vh - 130px);
+    border-bottom: 1px solid var(--gray-color);
+    position: relative;
+    flex: 1;
+    width: 100vw;
+}
+
+/* 加油站信息部分 */
+.station-info {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.station-image {
+    width: 100%;
+    margin-top: 2.7rem; /* 调整顶部边距使图片与REVIEW文本对齐 */
+}
+
+.station-image img {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+.station-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.station-type {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.info-item i {
+    margin-right: 0.8rem;
+    width: 20px;
+    color: var(--primary-color);
+}
+
+.info-item p {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    padding: 0.2rem;
+    margin-left: 0.5rem;
+    transition: color 0.3s;
+}
+
+.copy-btn:hover {
+    color: var(--secondary-color);
+}
+
+.copy-success i.fa-check {
+    color: green;
+}
+
+/* 评论部分样式 */
+.review-section {
+    flex: 1;
+    padding: 1.5rem;
+    border-left: 1px solid var(--gray-color);
+    border-right: 1px solid var(--gray-color);
+}
+
+.review-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    margin-top: 0; /* 确保REVIEW文本没有上边距 */
+}
+
+.overall-rating h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.rating-bars {
+    margin-bottom: 2rem;
+}
+
+.rating-item {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 12px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 1rem;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--secondary-color);
+}
+
+.rating-item p {
+    width: 100px;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.your-review {
+    margin-top: 2rem;
+}
+
+.review-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.review-category {
+    margin-bottom: 1rem;
+}
+
+.review-category p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* 服务部分样式 */
+.service-section {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.service-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    margin-top: 0; /* 确保SERVICE文本没有上边距 */
+}
+
+.service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f9f9f9;
+    border-radius: var(--border-radius);
+}
+
+.service-info {
+    flex: 1;
+}
+
+.service-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.service-type {
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.service-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.service-features span {
+    background-color: #eaeaea;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.service-image {
+    margin-left: 1rem;
+    width: 144px;
+    height: 144px;
+    flex-shrink: 0;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    width: 100vw;
+}
+
+.footer h4 {
+    margin-bottom: 0.8rem;
+}
+
+.footer p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+/* 响应式设计 */
+@media (min-width: 1201px) {
+    .container {
+        width: 100%;
+    }
+    
+    .main-content {
+        flex: 1;
+    }
+}
+
+@media (max-width: 1000px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .station-info, .review-section, .service-section {
+        border: none;
+        border-bottom: 1px solid var(--gray-color);
+        width: 100%;
+    }
+    
+    .review-section {
+        border-left: none;
+        border-right: none;
+    }
+    
+    .review-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-image {
+        margin-left: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .nav-menu a {
+        font-size: 0.9rem;
+    }
+    
+    .station-info {
+        padding: 0.8rem;
+    }
+    
+    .station-details h2 {
+        font-size: 1.3rem;
+    }
+    
+    .overall-rating h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .nav-menu ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-menu li {
+        margin: 0.5rem 0;
+        margin-left: 0;
+    }
+    
+    .service-item {
+        flex-direction: column;
+    }
+    
+    .service-image {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .info-item {
+        flex-wrap: wrap;
+    }
+    
+    .info-item p {
+        width: 100%;
+        margin: 0.3rem 0;
+    }
+    
+    .copy-btn {
+        margin-left: auto;
+    }
+    
+    .rating-item p {
+        width: 80px;
+        font-size: 0.8rem;
+    }
+    
+    .star {
+        font-size: 1rem;
+    }
+    
+    .footer {
+        padding: 1rem;
+    }
+    
+    .footer p {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .station-image {
+        margin-top: 2rem;
+    }
+    
+    .service-features {
+        flex-direction: column;
+    }
+    
+    .service-features span {
+        margin-bottom: 0.3rem;
+    }
+}
