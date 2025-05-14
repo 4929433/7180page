@@ -7,8 +7,18 @@
   <!-- 公共样式 -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/tablestyle.css" />
-  <!-- 当前页面样式 -->
   <link rel="stylesheet" href="css/historical.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -61,8 +71,8 @@
 
     <!-- 右侧图表区 -->
     <div class="right-panel chart-area">
-      <h3 id="chart-title">Queensland - 91</h3>
-      <img id="chart-img" src="image/Queensland_91.svg" alt="Fuel Price Chart">
+      <h3 id="chart-title">Queensland</h3>
+      <img id="chart-img" src="image/Queensland_All.svg" alt="Fuel Price Chart" style="width: 100%; max-width: 800px; height: auto;" />
     </div>
   </main>
 
@@ -76,6 +86,7 @@
     </p>
   </footer>
 
+  <!-- 脚本 -->
   <script src="js/link.js"></script>
   <script src="js/historical.js"></script>
 </body>
