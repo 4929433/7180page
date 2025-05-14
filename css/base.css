@@ -1,4 +1,8 @@
 /* Font & Base */
+.logo a {
+  color: white;
+  text-decoration: none;
+}
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
