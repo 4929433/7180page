@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FuelTrack AU - Historical Prices</title>
+  <!-- 公共样式 -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/tablestyle.css" />
+  <!-- 当前页面样式 -->
+  <link rel="stylesheet" href="css/historical.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">FuelTrack AU</div>
+    <nav class="nav">
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Fuel Station Calculator</a></li>
+        <li><a href="#" class="active">Historical Prices</a></li>
+        <li><a href="roadside.html">Roadside Assistance</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main class="container historical-layout">
+    <!-- 左侧控制面板 -->
+    <div class="left-panel">
+      <h1>Historical Fuel Price</h1>
+
+      <div class="mode-switch">
+        <button id="btn-qld" class="active">Queensland</button>
+        <button id="btn-world">World</button>
+      </div>
+
+      <div class="selector-group">
+        <label for="from-date">From
+          <select id="from-date">
+            <option value="">--</option>
+          </select>
+        </label>
+
+        <label for="to-date" id="to-label">To
+          <select id="to-date">
+            <option value="">--</option>
+          </select>
+          <small id="date-error" class="error-message"></small>
+        </label>
+      </div>
+
+      <div class="fuel-options">
+        <button class="fuel-btn" data-fuel="E10">E10</button>
+        <button class="fuel-btn active" data-fuel="91">91</button>
+        <button class="fuel-btn" data-fuel="95">95</button>
+        <button class="fuel-btn" data-fuel="98">98</button>
+        <button class="fuel-btn" data-fuel="D">D</button>
+      </div>
+    </div>
+
+    <!-- 右侧图表区 -->
+    <div class="right-panel chart-area">
+      <h3 id="chart-title">Queensland - 91</h3>
+      <img id="chart-img" src="image/Queensland_91.svg" alt="Fuel Price Chart">
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>Privacy Statement</strong></p>
+    <p>
+      We respect your privacy. All collected data is used solely to improve your experience,
+      including location data for displaying nearby fuel stations. Your personal information will not
+      be shared without your consent. You may manage or delete your data at any time.
+    </p>
+  </footer>
+
+  <script src="js/link.js"></script>
+  <script src="js/historical.js"></script>
+</body>
+</html>

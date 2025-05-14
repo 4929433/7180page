@@ -1,0 +1,103 @@
+.historical-layout {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  
+  .left-panel {
+    flex: 1 1 300px;
+    min-width: 280px;
+  }
+  
+  .right-panel {
+    flex: 2 1 600px;
+    min-width: 300px;
+  }
+  
+  .mode-switch {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .mode-switch button {
+    padding: 0.5rem 1.5rem;
+    border: 2px solid #003049;
+    background-color: white;
+    color: #003049;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .mode-switch button:hover {
+    transform: scale(1.05);
+  }
+  .mode-switch button.active {
+    background-color: #003049;
+    color: white;
+  }
+  
+  .selector-group {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+  }
+  .selector-group label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+  }
+  .selector-group select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+  }
+  
+  .fuel-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .fuel-btn {
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .fuel-btn:hover {
+    transform: scale(1.1);
+  }
+  .fuel-btn.active {
+    border: 2px solid #003049;
+    background-color: #003049;
+    color: white;
+  }
+  
+  .chart-area {
+    margin-top: 1rem;
+    background: #f3f3f3;
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .chart-area img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 0.8rem;
+    height: 1rem;
+  }
+  
+  .invalid-label {
+    color: red;
+  }
