@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FuelTrack AU - 加油站详情信息</title>
+    <link rel="stylesheet" href="FuelTrack AU.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="logo">
+                <h1><a href="#home">FuelTrack AU</a></h1>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#fuel-calculator" class="nav-link">Fuel Station Calculator</a></li>
+                    <li><a href="#historical-prices" class="nav-link">Historical Prices</a></li>
+                    <li><a href="#roadside-assistance" class="nav-link">Roadside Assistance</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 左侧信息区域 -->
+            <section class="station-info">
+                <div class="back-button">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="station-image">
+                    <img src="711.png" alt="7-Eleven East Brisbane">
+                </div>
+                <div class="station-details">
+                    <h2>7-Eleven East Brisbane</h2>
+                    <p class="station-type">Petrol Station</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>999 Stanley St, East Brisbane QLD 4169</p>
+                        <button class="copy-btn" data-clipboard-text="999 Stanley St, East Brisbane QLD 4169">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Open 24 hours</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-globe"></i>
+                        <p>None</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>(07) 3399 6611</p>
+                        <button class="copy-btn" data-clipboard-text="(07) 3399 6611">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 中间评论区域 -->
+            <section class="review-section">
+                <h3>REVIEW</h3>
+                <div class="overall-rating">
+                    <h2>3.9</h2>
+                </div>
+                
+                <div class="rating-bars">
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <p>Environment</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 50%"></div>
+                        </div>
+                        <p>Service</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <p>Fuel Quality</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 70%"></div>
+                        </div>
+                        <p>Facilities</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                        <p>Cleanliness</p>
+                    </div>
+                </div>
+                
+                <div class="your-review">
+                    <h3>Your Review</h3>
+                    
+                    <div class="review-categories">
+                        <div class="review-category">
+                            <p>Environment</p>
+                            <div class="star-rating" data-category="environment">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Service</p>
+                            <div class="star-rating" data-category="service">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Fuel Quality</p>
+                            <div class="star-rating" data-category="fuel">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Facilities</p>
+                            <div class="star-rating" data-category="facilities">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Cleanliness</p>
+                            <div class="star-rating" data-category="cleanliness">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 右侧服务区域 -->
+            <section class="service-section">
+                <h3>SERVICE</h3>
+                
+                <div class="service-item">
+                    <div class="service-info">
+                        <h4>McDonald's</h4>
+                        <p class="service-type">Fast food restaurant</p>
+                        <div class="service-features">
+                            <span>Drive-through</span>
+                            <span>Outdoor seating</span>
+                            <span>Dine-in</span>
+                        </div>
+                    </div>
+                    <div class="service-image">
+                        <img src="McDonald's_logo.svg.png" alt="McDonald's">
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-info">
+                        <h4>KFC</h4>
+                        <p class="service-type">Fast food restaurant</p>
+                        <div class="service-features">
+                            <span>Drive-through</span>
+                            <span>Outdoor seating</span>
+                            <span>Dine-in</span>
+                        </div>
+                    </div>
+                    <div class="service-image">
+                        <img src="KFC.png" alt="KFC">
+                    </div>
+                </div>
+                
+                <div class="service-item">
+                    <div class="service-info">
+                        <h4>Car Wash Auto</h4>
+                        <p class="service-type">Car wash</p>
+                        <div class="service-features">
+                            <span>24 hours/7 days</span>
+                            <span>Credit cards</span>
+                            <span>NFC mobile payments</span>
+                        </div>
+                    </div>
+                    <div class="service-image">
+                        <img src="carwash.JPG" alt="Car Wash">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚区域 -->
+        <footer class="footer">
+            <h4>Privacy Statement</h4>
+            <p>We respect your privacy. All collected data is used solely to improve your experience, including location data for displaying nearby fuel stations. Your personal information will not be shared with third parties without your consent. You may manage or delete your data at any time.</p>
+        </footer>
+    </div>
+
+    <script src="FuelTrack AU.js"></script>
+</body>
+</html>
