@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FuelTrack AU</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/tablestyle.css" />
+  <link rel="stylesheet" href="css/homepage.css" />
+  <link rel="stylesheet" href="css/calculator.css" />
+</head>
+<body>
+ <!-- 公共样式 -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/tablestyle.css" />
+  <link rel="stylesheet" href="css/historical.css" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo"><a href="homepage.html">FuelTrack AU</a></div>
+    <nav class="nav">
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="calculator.html">Fuel Station Calculator</a></li>
+        <li><a href="historicalprices.html" class="current">Historical Prices</a></li>
+        <li><a href="roadside.html">Roadside Assistance</a></li>
+      </ul>
+    </nav>
+  </header>
+
+<main class="calculator-page">
+  <div class="map-section">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!..."
+      style="width:100%; height:100%; border:0;"
+      allowfullscreen=""
+      loading="lazy"
+    ></iframe>
+  </div>
+
+  <div class="info-section">
+    <div class="fuel-controls">
+        <label for="fuelType">Fuel Type</label>
+        <select id="fuelType">
+        <option value="E10">E10</option>
+        <option value="U91">U91</option>
+        <option value="Diesel">Diesel</option>
+        </select>
+
+        <label>Calculation Type</label>
+        <div class="calc-type">
+        <button class="active">By Price</button>
+        <button>By Liters</button>
+        </div>
+
+        <label for="inputValue">Enter Value</label>
+        <input id="inputValue" type="text" />
+
+        <button class="calculate-btn">Calculate</button>
+    </div>
+
+    <div class="lowest-price-banner">Lowest Price</div>
+    <div class="station-card highlighted">
+        <div>
+        <div class="station-name">Pearl Energy Moorooka</div>
+        <div class="station-distance">0.2km</div>
+        <div class="station-nav">Navigation</div>
+        </div>
+        <div class="station-price green">1.56</div>
+    </div>
+
+    <div class="section-title">Other Options</div>
+    <div class="station-card-list">
+        <div class="station-card">
+        <div>
+            <div class="station-name">7-Eleven</div>
+            <div class="station-distance">0.8km</div>
+            <div class="station-nav">Navigation</div>
+        </div>
+        <div class="station-price red">1.57</div>
+        </div>
+
+        <div class="station-card">
+        <div>
+            <div class="station-name">bp</div>
+            <div class="station-distance">0.9km</div>
+            <div class="station-nav">Navigation</div>
+        </div>
+        <div class="station-price red">1.66</div>
+        </div>
+
+        <div class="station-card">
+        <div>
+            <div class="station-name">bp</div>
+            <div class="station-distance">0.9km</div>
+            <div class="station-nav">Navigation</div>
+        </div>
+        <div class="station-price red">1.66</div>
+        </div>
+
+        <div class="station-card">
+        <div>
+            <div class="station-name">bp</div>
+            <div class="station-distance">0.9km</div>
+            <div class="station-nav">Navigation</div>
+        </div>
+        <div class="station-price red">1.66</div>
+        </div>
+    </div>
+</div>
+
+</main>
+
+<!-- 页脚 -->
+  <footer class="footer">
+    <p><strong>Privacy Statement</strong></p>
+    <p>
+      We respect your privacy. All collected data is used solely to improve your experience,
+      including location data for displaying nearby fuel stations. Your personal information will not
+      be shared without your consent. You may manage or delete your data at any time.
+    </p>
+  </footer>
+
+  <script src="js/link.js"></script>
+  <script src="js/import value.js"></script>
+</body>
+</html>
