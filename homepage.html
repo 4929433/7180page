@@ -23,112 +23,107 @@
     </nav>
   </header>
 
-
-
-
-
-
-<div class="image-overlay-container">
-  <img src="image/homepage1.png" alt="Example Image">
-  <div class="overlay-text">FuelTrack </div>
-  <div class="overlay-text2">Smarter Fuel Decisions Start Here</div>
-</div>
-
-
-
-<div class="form-layout">
-  <div class="form-row">
-    <div class="form-group half">
-      <label for="fuel-type">Select Fuel Type*</label>
-      <select id="fuel-type">
-        <option value="">Please select</option>
-        <option>91</option>
-        <option>95</option>
-        <option>98</option>
-        <option>E10</option>
-        <option>Diesel</option>
-      </select>
-      <small class="error-message"></small>
-    </div>
-
-    <div class="form-group half">
-      <label for="amount-type">Select Amount or Fuel Volume*</label>
-      <select id="amount-type">
-        <option value="">Please select</option>
-        <option value="volume">By Litres</option>
-        <option value="money">By Amount (A$)</option>
-      </select>
-      <small class="error-message"></small>
-    </div>
+  <!-- 顶部图像与文字 -->
+  <div class="image-overlay-container">
+    <img src="image/homepage1.png" alt="Example Image">
+    <div class="overlay-text">FuelTrack </div>
+    <div class="overlay-text2">Smarter Fuel Decisions Start Here</div>
   </div>
 
-  <div class="form-row full-center">
-    <div class="form-group full">
-      <label for="value-input">Enter Value*</label>
-      <div class="input-wrapper">
-        <span id="unit-icon">🛢️</span>
-        <input type="number" id="value-input" placeholder="Enter value" />
+  <!-- 表单 -->
+  <div class="form-layout">
+    <div class="form-row">
+      <div class="form-group half">
+        <label for="fuel-type">Select Fuel Type*</label>
+        <select id="fuel-type">
+          <option value="">Please select</option>
+          <option>91</option>
+          <option>95</option>
+          <option>98</option>
+          <option>E10</option>
+          <option>Diesel</option>
+        </select>
+        <small class="error-message"></small>
       </div>
-      <small class="error-message"></small>
-    </div>
-  </div>
 
-  <div class="form-row center">
-    <button class="BTN" id="start-btn">START</button>
-  </div>
-  </div>
-
-<section class="info-section">
-  <div class="info-grid">
-    
-    <!-- Block 1: Map Info -->
-    <div class="info-item">
- <img src="image/homepage2.png" alt="Gas Station Map" class="info-img">
-      <div class="info-text">
-        <h3>Display Gas Station Information on Map</h3>
-        <p>
-          Visually displays nearby gas station locations on the map, making it easier to find the best place to refuel and improving travel efficiency and fueling experience.
-        </p>
-      </div>
-    </div>
-  
-<!-- Block 2: Roadside Assistance -->
-    <div class="info-item">
-      <div class="info-text">
-        <h3>Roadside Assistance</h3>
-        <p style="color: #d84900; font-weight: 600;">24/7 Emergency Service</p>
-        <ul class="service-list">
-          <li>🔧 Towing</li>
-          <li>🛞 Tire Change</li>
-          <li>🔐 Lockout Service</li>
-          <li>⛽ Fuel Delivery</li>
-        </ul>
-      </div>
-      <img src="image/homepage3.png" alt="Roadside Assistance" class="info-img">
-    </div>
-
-
-
-    <!-- Block 3: Historical Price -->
-    <div class="info-item">
-      <img src="image/homepage4.jpg" alt="Fuel Price Trend" class="info-img">
-      <div class="info-text">
-        <h3>Historical Fuel Price Lookup</h3>
-        <p>
-          This feature lets users check past fuel prices by date and region to better understand trends and plan refueling wisely.
-        </p>
+      <div class="form-group half">
+        <label for="amount-type">Select Amount or Fuel Volume*</label>
+        <select id="amount-type">
+          <option value="">Please select</option>
+          <option value="volume">By Litres</option>
+          <option value="money">By Amount (A$)</option>
+        </select>
+        <small class="error-message"></small>
       </div>
     </div>
 
+    <div class="form-row full-center">
+      <div class="form-group full">
+        <label for="value-input">Enter Value*</label>
+        <div class="input-wrapper">
+          <span id="unit-icon">🛢️</span>
+          <input type="number" id="value-input" placeholder="Enter value" />
+        </div>
+        <small class="error-message"></small>
+      </div>
+    </div>
+
+    <div class="form-row center">
+      <button class="BTN" id="start-btn">START</button>
+    </div>
   </div>
-</section>    
 
+  <!-- 信息展示区 -->
+  <section class="info-section">
+    <div class="info-grid">
 
+      <div class="info-item">
+        <img src="image/homepage2.png" alt="Gas Station Map" class="info-img">
+        <div class="info-text">
+          <h3>Display Gas Station Information on Map</h3>
+          <p>
+            Visually displays nearby gas station locations on the map, making it easier to find the best place to refuel and improving travel efficiency and fueling experience.
+          </p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-text">
+          <h3>Roadside Assistance</h3>
+          <p style="color: #d84900; font-weight: 600;">24/7 Emergency Service</p>
+          <ul class="service-list">
+            <li>🔧 Towing</li>
+            <li>🛞 Tire Change</li>
+            <li>🔐 Lockout Service</li>
+            <li>⛽ Fuel Delivery</li>
+          </ul>
+        </div>
+        <img src="image/homepage3.png" alt="Roadside Assistance" class="info-img">
+      </div>
+
+      <div class="info-item">
+        <img src="image/homepage4.jpg" alt="Fuel Price Trend" class="info-img">
+        <div class="info-text">
+          <h3>Historical Fuel Price Lookup</h3>
+          <p>
+            This feature lets users check past fuel prices by date and region to better understand trends and plan refueling wisely.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 页脚 -->
   <footer class="footer">
-    <p>Privacy StatementWe respect your privacy.</p>
-    <p>All collected data is used solely to improve your experience, including location data for displaying nearby fuel stations. Your personal information will not be shared with third parties without your consent. You may manage or delete your data at any time.
+    <p><strong>Privacy Statement</strong></p>
+    <p>
+      We respect your privacy. All collected data is used solely to improve your experience,
+      including location data for displaying nearby fuel stations. Your personal information will not
+      be shared with third parties without your consent. You may manage or delete your data at any time.
     </p>
   </footer>
+
   <script src="js/link.js"></script>
   <script src="js/import value.js"></script>
 </body>

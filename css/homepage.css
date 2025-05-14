@@ -73,7 +73,7 @@
 
 .image-overlay-container {
   position: relative;
-  width: flex; /* 你可以自定义图片宽度 */
+  width: 100%;  
   height: auto;
   border-radius: 12px;
   overflow: hidden;
