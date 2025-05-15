@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-EN">
+<html lang="zh-en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>FuelTrack AU - 加油站详情信息</title>
-    <link rel="stylesheet" href="FuelTrack AU.css">
+    <title>FuelTrack AU - siteinformation</title>
+    <link rel="stylesheet" href="css/FuelTrack AU.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -12,13 +12,13 @@
         <!-- 顶部导航栏 -->
         <header class="header">
             <div class="logo">
-                <h1><a href="#home">FuelTrack AU</a></h1>
+                <h1><a href="homepage.html">FuelTrack AU</a></h1>
             </div>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#fuel-calculator" class="nav-link">Fuel Station Calculator</a></li>
-                    <li><a href="#historical-prices" class="nav-link">Historical Prices</a></li>
-                    <li><a href="#roadside-assistance" class="nav-link">Roadside Assistance</a></li>
+                    <li><a href="homepage.html" class="nav-link">Fuel Station Calculator</a></li>
+                    <li><a href="historicalprices.html" class="nav-link">Historical Prices</a></li>
+                    <li><a href="roadside.html" class="nav-link">Roadside Assistance</a></li>
                 </ul>
             </nav>
         </header>
@@ -28,10 +28,12 @@
             <!-- 左侧信息区域 -->
             <section class="station-info">
                 <div class="back-button">
-                    <i class="fas fa-chevron-left"></i>
+                    <a href="homepage.html">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
                 </div>
                 <div class="station-image">
-                    <img src="711.png" alt="7-Eleven East Brisbane">
+                    <img src="image/711.png" alt="7-Eleven East Brisbane">
                 </div>
                 <div class="station-details">
                     <h2>7-Eleven East Brisbane</h2>
@@ -186,7 +188,7 @@
                         </div>
                     </div>
                     <div class="service-image">
-                        <img src="McDonald's_logo.svg.png" alt="McDonald's">
+                        <img src="image/McDonald's_logo.svg.png" alt="McDonald's">
                     </div>
                 </div>
                 
@@ -201,7 +203,7 @@
                         </div>
                     </div>
                     <div class="service-image">
-                        <img src="KFC.png" alt="KFC">
+                        <img src="image/KFC.png" alt="KFC">
                     </div>
                 </div>
                 
@@ -216,7 +218,7 @@
                         </div>
                     </div>
                     <div class="service-image">
-                        <img src="carwash.JPG" alt="Car Wash">
+                        <img src="image/carwash.JPG" alt="Car Wash">
                     </div>
                 </div>
             </section>
@@ -229,6 +231,6 @@
         </footer>
     </div>
 
-    <script src="FuelTrack AU.js"></script>
+    <script src="js/FuelTrack AU.js"></script>
 </body>
 </html>
