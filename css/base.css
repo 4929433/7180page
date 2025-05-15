@@ -20,13 +20,13 @@ img {
 
 /* Header */
 .header {
+  background-color:#003049;
+  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #003049;
-  color: #fff;
   padding: 1rem 2rem;
-  flex-wrap: wrap;
+  width: flex;
 }
 
 .logo {

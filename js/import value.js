@@ -17,7 +17,6 @@ amountTypeSelect.addEventListener("change", function () {
   }
 });
 
-// 表单验证
 startBtn.addEventListener("click", function () {
   let isValid = true;
 
@@ -43,9 +42,9 @@ startBtn.addEventListener("click", function () {
     isValid = false;
   }
 
-  // 如果验证通过
+  // ✅ 验证通过 → 跳转到 calculator.html
   if (isValid) {
-    alert("Form submitted successfully!"); // 或处理提交
+    window.location.href = "calculator.html";
   }
 });
 
