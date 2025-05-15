@@ -110,11 +110,12 @@
   font-weight: bold;
   background-color: #fff;
   color: #002c44;
+  cursor: pointer;
 }
 
 .calc-type button.active {
   background-color: #002c44;
-  color: #fff;
+  color: white;
 }
 
 .calculate-btn {

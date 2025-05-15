@@ -70,7 +70,7 @@ img {
 
 .nav-links a.active,
 .nav-links a:focus {
-  color: #fcbf49;
+  color: #ffffff;
 }
 
 .nav-links a.active::after,
@@ -81,7 +81,7 @@ img {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #fcbf49;
+  background-color: #ffffff;
 }
 
 /* Hamburger icon */

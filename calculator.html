@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/tablestyle.css" />
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/calculator.css" />
+  
 </head>
 <body>
  <!-- 公共样式 -->
@@ -56,13 +57,14 @@
         <select id="fuelType">
         <option value="E10">E10</option>
         <option value="U91">U91</option>
+        <option value="U91">U95</option>
+        <option value="U91">U98</option>
         <option value="Diesel">Diesel</option>
         </select>
 
-        <label>Calculation Type</label>
         <div class="calc-type">
-        <button class="active">By Price</button>
-        <button>By Liters</button>
+          <button id="byPriceBtn" class="active">By Price</button>
+          <button id="byLitersBtn">By Liters</button>
         </div>
 
         <label for="inputValue">Enter Value</label>
@@ -135,5 +137,6 @@
 
   <script src="js/link.js"></script>
   <script src="js/import value.js"></script>
+  <script src="js/calculator.js"></script>
 </body>
 </html>
