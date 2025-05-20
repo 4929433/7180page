@@ -1,0 +1,142 @@
+/* 站点卡片列表初始状态 - 隐藏 */
+.station-card-list {
+    display: none;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  /* 当展开时添加这个类 */
+  .station-card-list.expanded {
+    display: block;
+    animation: slideDown 0.3s ease-out forwards;
+  }
+  
+  /* 切换按钮样式 */
+  .section-title {
+    background-color: #0e304e;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 15px 0;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  /* 添加指示箭头 */
+  .section-title::after {
+    content: "▼";
+    position: absolute;
+    right: 15px;
+    transition: transform 0.3s ease;
+    font-size: 12px;
+  }
+  
+  .section-title.active {
+    background-color: #12395d;
+  }
+  
+  .section-title.active::after {
+    transform: rotate(180deg);
+  }
+  
+  /* 为切换添加平滑过渡效果 */
+  .station-card {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      max-height: 0;
+      opacity: 0;
+    }
+    to {
+      max-height: 1000px;
+      opacity: 1;
+    }
+  }
+  
+  /* 确保切换按钮的鼠标指针样式正确 */
+  .section-title:hover {
+    background-color: #12395d;
+  }
+  
+  /* 导航按钮样式增强 */
+  .station-nav {
+    background-color: #e5e5e5;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .station-nav:hover {
+    background-color: #d0d0d0;
+  }
+  
+  /* 改进最低价格卡片样式 */
+  .lowest-price-banner {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .station-card.highlighted {
+    border: 2px solid #4caf50;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+  }
+  
+  /* 修改站点卡片样式，确保统一 */
+  .station-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .station-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .station-distance {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .station-price {
+    font-size: 1.5em;
+    font-weight: 700;
+  }
+  
+  .station-price.green {
+    color: #4caf50;
+  }
+  
+  .station-price.red {
+    color: #e74c3c;
+  }

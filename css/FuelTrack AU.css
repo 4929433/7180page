@@ -1,165 +1,80 @@
-/* 全局样式 */
+/* FuelTrack AU - Station Detail Styles */
 :root {
-    --primary-color: #14374a;
+    --primary-color: #003049;
     --secondary-color: #e05e32;
     --light-color: #f5f5f5;
     --dark-color: #333;
     --gray-color: #ddd;
-    --text-color: #333;
-    --border-radius: 4px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
-
+/* 全局样式设置，确保页面铺满屏幕 */
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 防止水平滚动 */
     width: 100%;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-body {
-    background-color: #f5f5f5;
-    color: var(--text-color);
-    font-size: 16px;
-    line-height: 1.5;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-    width: 100vw;
 }
 
 .container {
-    width: 100vw;
-    min-width: 100%;
+    width: 100%;
+    max-width: 100%;
     margin: 0;
     padding: 0;
-    background-color: white;
-    box-shadow: none;
+    box-sizing: border-box;
+    min-height: 100%;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    overflow-x: hidden;
 }
 
-/* 顶部导航栏样式 */
-.header {
-    background-color: var(--primary-color);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    width: 100vw;
-}
-
-.logo h1 {
-    margin: 0;
-    font-size: 1.8rem;
-}
-
-.logo h1 a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.logo h1 a:hover {
-    color: var(--gray-color);
-}
-
-.nav-menu ul {
-    display: flex;
-    list-style: none;
-}
-
-.nav-menu li {
-    margin-left: 2rem;
-}
-
-.nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
-    padding-bottom: 5px;
-    position: relative;
-}
-
-.nav-menu a:hover {
-    color: var(--gray-color);
-}
-
-.nav-menu a:hover::after {
-    width: 100%;
-}
-
-.nav-menu a.active {
-    color: white;
-}
-
-.nav-menu a.active::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-}
-
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    transition: width 0.3s;
-}
-
-/* 主内容区域样式 */
+/* Main content layout - specific to station details page */
 .main-content {
     display: flex;
     min-height: calc(100vh - 130px);
     border-bottom: 1px solid var(--gray-color);
     position: relative;
     flex: 1;
-    width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-/* 加油站信息部分 */
+/* Back button */
+.back-button {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--primary-color);
+}
+
+.back-button a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Station info section */
 .station-info {
     flex: 1;
     background-color: #f9f9f9;
     padding: 1rem;
     position: relative;
-}
-
-.back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 1;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .station-image {
     width: 100%;
-    margin-top: 2.7rem; /* 调整顶部边距使图片与REVIEW文本对齐 */
+    margin-top: 0;
 }
 
 .station-image img {
     width: 100%;
-    border-radius: var(--border-radius);
+    border-radius: 4px;
 }
 
 .station-details h2 {
@@ -209,19 +124,21 @@ body {
     color: green;
 }
 
-/* 评论部分样式 */
+/* Review section styles */
 .review-section {
     flex: 1;
     padding: 1.5rem;
     border-left: 1px solid var(--gray-color);
     border-right: 1px solid var(--gray-color);
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .review-section h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: var(--dark-color);
-    margin-top: 0; /* 确保REVIEW文本没有上边距 */
+    margin-top: 0;
 }
 
 .overall-rating h2 {
@@ -270,8 +187,15 @@ body {
     gap: 1.5rem;
 }
 
+/* For the review category positioning */
 .review-category {
+    position: relative; /* 为绝对定位提供参考 */
     margin-bottom: 1rem;
+}
+
+/* 清洁度评分所在的容器 */
+.review-category:last-child {
+    margin-bottom: 0; /* 移除底部间距 */
 }
 
 .review-category p {
@@ -290,17 +214,45 @@ body {
     font-size: 1.2rem;
 }
 
-/* 服务部分样式 */
+/* Submit button styles */
+.submit-btn {
+    position: absolute;
+    left: 230px;
+    top: 55px; /* 垂直居中 */
+    transform: translateY(-50%); /* 精确垂直居中 */
+    background-color: #e05e32;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.submit-btn:hover {
+    background-color: #c04a29;
+}
+
+/* Service section styles */
 .service-section {
     flex: 1;
     padding: 1.5rem;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .service-section h3 {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
     color: var(--dark-color);
-    margin-top: 0; /* 确保SERVICE文本没有上边距 */
+    margin-top: 0;
 }
 
 .service-item {
@@ -310,7 +262,7 @@ body {
     margin-bottom: 1.5rem;
     padding: 1rem;
     background-color: #f9f9f9;
-    border-radius: var(--border-radius);
+    border-radius: 4px;
 }
 
 .service-info {
@@ -335,10 +287,9 @@ body {
 }
 
 .service-features span {
-    background-color: #eaeaea;
-    padding: 0.2rem 0.5rem;
-    border-radius: 3px;
+    color: #555;
     font-size: 0.75rem;
+    margin-right: 8px;
 }
 
 .service-image {
@@ -352,38 +303,101 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: var(--border-radius);
+    border-radius: 4px;
 }
 
-/* 页脚样式 */
-.footer {
+/* Header styles - 确保铺满整个宽度 */
+.header {
+    width: 100%;
+    margin: 0;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    background-color: var(--primary-color);
+}
+
+/* Footer styles */
+footer {
     background-color: var(--primary-color);
     color: white;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    width: 100vw;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
-.footer h4 {
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    margin-top: 0.5rem; /* 减少顶部边距，使文字靠近顶部边线 */
+}
+
+/* 给页脚部分添加顶部白色边框 */
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    border-top: 1px solid white; /* 添加白色的顶部边框 */
+    padding-top: 0.8rem; /* 减少顶部内边距，使内容靠近边线 */
+}
+
+
+/* 移除页脚标题下划线 */
+.footer-section h4::after {
+    content: none;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
     margin-bottom: 0.8rem;
 }
 
-.footer p {
-    font-size: 0.8rem;
-    line-height: 1.5;
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
 }
 
-/* 响应式设计 */
-@media (min-width: 1201px) {
-    .container {
-        width: 100%;
-    }
-    
-    .main-content {
-        flex: 1;
-    }
+.footer-links a:hover {
+    color: white;
 }
 
+.footer-links a i {
+    margin-right: 8px;
+}
+
+.footer-bottom {
+    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 1rem;
+    color: #ccc;
+}
+
+.footer-bottom p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+}
+
+/* Responsive media queries */
 @media (max-width: 1000px) {
     .main-content {
         flex-direction: column;
@@ -407,23 +421,21 @@ body {
     .service-image {
         margin-left: 0.5rem;
     }
+
+    .back-button {
+        top: 120px;
+        left: 15px;
+        transform: none;
+    }
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 0.8rem 1rem;
+    .station-image {
+        margin-top: 2rem;
     }
     
-    .logo h1 {
-        font-size: 1.5rem;
-    }
-    
-    .nav-menu a {
-        font-size: 0.9rem;
-    }
-    
-    .station-info {
-        padding: 0.8rem;
+    .review-section, .service-section, .station-info {
+        padding: 1rem 0.8rem;
     }
     
     .station-details h2 {
@@ -433,32 +445,42 @@ body {
     .overall-rating h2 {
         font-size: 2.5rem;
     }
-}
-
-@media (max-width: 600px) {
-    .header {
-        flex-direction: column;
-        padding: 1rem;
-    }
-    
-    .nav-menu ul {
-        margin-top: 1rem;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .nav-menu li {
-        margin: 0.5rem 0;
-        margin-left: 0;
-    }
     
     .service-item {
         flex-direction: column;
+        align-items: flex-start;
     }
     
     .service-image {
         margin-left: 0;
         margin-top: 1rem;
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+    }
+    
+    .star {
+        font-size: 1rem;
+    }
+    
+    .submit-btn {
+        position: static; /* 在移动设备上恢复正常流 */
+        display: block;
+        margin-top: 15px;
+        transform: none;
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-categories {
+        grid-template-columns: 1fr;
+    }
+    
+    .rating-item p {
+        width: 80px;
+        font-size: 0.8rem;
     }
     
     .info-item {
@@ -474,33 +496,6 @@ body {
         margin-left: auto;
     }
     
-    .rating-item p {
-        width: 80px;
-        font-size: 0.8rem;
-    }
-    
-    .star {
-        font-size: 1rem;
-    }
-    
-    .footer {
-        padding: 1rem;
-    }
-    
-    .footer p {
-        font-size: 0.7rem;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-    }
-    
-    .station-image {
-        margin-top: 2rem;
-    }
-    
     .service-features {
         flex-direction: column;
     }
@@ -508,4 +503,28 @@ body {
     .service-features span {
         margin-bottom: 0.3rem;
     }
+}
+
+/* 为导航链接添加下划线效果 */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #f5f5f5;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.active::after {
+    width: 100%;
 }

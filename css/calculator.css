@@ -110,12 +110,11 @@
   font-weight: bold;
   background-color: #fff;
   color: #002c44;
-  cursor: pointer;
 }
 
 .calc-type button.active {
   background-color: #002c44;
-  color: white;
+  color: #fff;
 }
 
 .calculate-btn {
@@ -199,4 +198,51 @@
   margin: 20px 0 10px 0;
   border-radius: 8px;
   font-size: 18px;
+}
+
+/* 可折叠Footer的样式 - 添加到calculator.css */
+.collapsible-footer {
+  position: relative;
+}
+
+.footer-toggle {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #003049;
+  color: white;
+  border: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  z-index: 10;
+}
+
+.footer-toggle i {
+  transition: transform 0.3s ease;
+}
+
+.footer-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.footer-bottom {
+  padding: 8px;
+  transition: padding 0.5s ease;
+}
+
+.collapsible-footer.expanded .footer-content {
+  max-height: 300px;
+}
+
+.collapsible-footer.expanded .footer-toggle i {
+  transform: rotate(180deg);
 }

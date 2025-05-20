@@ -20,13 +20,13 @@ img {
 
 /* Header */
 .header {
-  background-color:#003049;
-  color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #003049;
+  color: #fff;
   padding: 1rem 2rem;
-  width: flex;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -70,7 +70,7 @@ img {
 
 .nav-links a.active,
 .nav-links a:focus {
-  color: #ffffff;
+  color: #fcbf49;
 }
 
 .nav-links a.active::after,
@@ -81,7 +81,7 @@ img {
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: #ffffff;
+  background-color: #fcbf49;
 }
 
 /* Hamburger icon */
@@ -133,4 +133,35 @@ img {
   .hamburger {
     display: block;
   }
+}
+
+/* 当前页面导航标记 */
+.nav-links a.current {
+  color: white; /* 保持文字颜色为白色 */
+  font-weight: 600; /* 略微加粗 */
+}
+
+.nav-links a.current::after {
+  content: "";
+  position: absolute;
+  width: 100%; /* 下划线占满整个链接宽度 */
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: white; /* 白色下划线 */
+}
+
+/* 确保悬停效果不会与当前页面标记冲突 */
+.nav-links a:not(.current):hover::after {
+  width: 100%;
+  background-color: #f5f5f5; /* 保持悬停时的下划线是浅白色 */
+}
+
+/* 保持点击激活状态的效果，但与current分开 */
+.nav-links a.active:not(.current) {
+  color: #fcbf49; /* 黄色文字 */
+}
+
+.nav-links a.active:not(.current)::after {
+  background-color: #fcbf49; /* 黄色下划线 */
 }
