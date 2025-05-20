@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -8,13 +9,10 @@
   <link rel="stylesheet" href="css/tablestyle.css" />
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/calculator.css" />
-  
-</head>
-<body>
- <!-- 公共样式 -->
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/tablestyle.css" />
-  <link rel="stylesheet" href="css/historical.css" />
+  <!-- 添加卡片切换的CSS -->
+  <link rel="stylesheet" href="css/calculator-cards.css" />
+  <link rel="stylesheet" href="css/FuelTrack AU.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     html, body {
       height: 100%;
@@ -41,102 +39,139 @@
     </nav>
   </header>
 
-<main class="calculator-page">
-  <div class="map-section">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!..."
-      style="width:100%; height:100%; border:0;"
-      allowfullscreen=""
-      loading="lazy"
-    ></iframe>
-  </div>
+  <main class="calculator-page">
+    <div class="map-section">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!..."
+        style="width:100%; height:100%; border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
 
-  <div class="info-section">
-    <div class="fuel-controls">
+    <div class="info-section">
+      <div class="fuel-controls">
         <label for="fuelType">Fuel Type</label>
         <select id="fuelType">
-        <option value="E10">E10</option>
-        <option value="U91">U91</option>
-        <option value="U91">U95</option>
-        <option value="U91">U98</option>
-        <option value="Diesel">Diesel</option>
+          <option value="E10">E10</option>
+          <option value="U91">U91</option>
+          <option value="Diesel">Diesel</option>
         </select>
 
+        <label>Calculation Type</label>
         <div class="calc-type">
-          <button id="byPriceBtn" class="active">By Price</button>
-          <button id="byLitersBtn">By Liters</button>
+          <button class="active">By Price</button>
+          <button>By Liters</button>
         </div>
 
         <label for="inputValue">Enter Value</label>
         <input id="inputValue" type="text" />
 
         <button class="calculate-btn">Calculate</button>
-    </div>
+      </div>
 
-    <div class="lowest-price-banner">Lowest Price</div>
-    <div class="station-card highlighted">
+      <div class="lowest-price-banner">Lowest Price</div>
+      <div class="station-card highlighted">
         <div>
-        <div class="station-name">Pearl Energy Moorooka</div>
-        <div class="station-distance">0.2km</div>
-        <div class="station-nav">Navigation</div>
+          <div class="station-name">Pearl Energy Moorooka</div>
+          <div class="station-distance">0.2km</div>
+          <div class="station-nav">Navigation</div>
         </div>
         <div class="station-price green">1.56</div>
-    </div>
+      </div>
 
-    <div class="section-title">Other Options</div>
-    <div class="station-card-list">
+      <!-- 修改：添加ID和可点击的样式 -->
+      <div class="section-title" id="otherOptionsToggle">Other Options</div>
+      
+      <!-- 修改：添加ID以便JavaScript操作 -->
+      <div class="station-card-list" id="stationCardList">
         <div class="station-card">
-        <div>
+          <div>
             <div class="station-name">7-Eleven</div>
             <div class="station-distance">0.8km</div>
             <div class="station-nav">Navigation</div>
-        </div>
-        <div class="station-price red">1.57</div>
-        </div>
-
-        <div class="station-card">
-        <div>
-            <div class="station-name">bp</div>
-            <div class="station-distance">0.9km</div>
-            <div class="station-nav">Navigation</div>
-        </div>
-        <div class="station-price red">1.66</div>
+          </div>
+          <div class="station-price red">1.57</div>
         </div>
 
         <div class="station-card">
-        <div>
+          <div>
             <div class="station-name">bp</div>
             <div class="station-distance">0.9km</div>
             <div class="station-nav">Navigation</div>
-        </div>
-        <div class="station-price red">1.66</div>
+          </div>
+          <div class="station-price red">1.66</div>
         </div>
 
         <div class="station-card">
-        <div>
+          <div>
             <div class="station-name">bp</div>
             <div class="station-distance">0.9km</div>
             <div class="station-nav">Navigation</div>
+          </div>
+          <div class="station-price red">1.66</div>
         </div>
-        <div class="station-price red">1.66</div>
+
+        <div class="station-card">
+          <div>
+            <div class="station-name">bp</div>
+            <div class="station-distance">0.9km</div>
+            <div class="station-nav">Navigation</div>
+          </div>
+          <div class="station-price red">1.66</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 - 可折叠 -->
+  <footer class="collapsible-footer">
+    <button class="footer-toggle" id="footerToggle">
+      More Info <i class="fas fa-chevron-down"></i>
+    </button>
+    
+    <!-- Dark blue footer with columns -->
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Find us</h4>
+            <ul class="footer-links">
+                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i> X</a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i> Youtube</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Terms and conditions</h4>
+            <ul class="footer-links">
+                <li><a href="#">Accessibility</a></li>
+                <li><a href="#">Feedback on issues</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Contact us</h4>
+            <ul class="footer-links">
+                <li><a href="#"><i class="fas fa-phone"></i> Phone</a></li>
+                <li><a href="#"><i class="fas fa-envelope"></i> Message</a></li>
+            </ul>
         </div>
     </div>
-</div>
 
-</main>
-
-<!-- 页脚 -->
-  <footer class="footer">
-    <p><strong>Privacy Statement</strong></p>
-    <p>
-      We respect your privacy. All collected data is used solely to improve your experience,
-      including location data for displaying nearby fuel stations. Your personal information will not
-      be shared without your consent. You may manage or delete your data at any time.
-    </p>
+    <!-- Copyright section -->
+    <div class="footer-bottom">
+        <p>FuelTrack AU</p>
+        <p>Smart Fuel Decisions Start here</p>
+    </div>
   </footer>
 
   <script src="js/link.js"></script>
   <script src="js/import value.js"></script>
+  <!-- 添加卡片切换的JavaScript -->
+  <script src="js/card-toggle.js"></script>
+  <!-- 添加计算器页面特定的JavaScript -->
   <script src="js/calculator.js"></script>
 </body>
 </html>
