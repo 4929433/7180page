@@ -11,14 +11,217 @@
   <link rel="stylesheet" href="css/FuelTrack AU.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    html, body {
-      height: 100%;
+    body {
       margin: 0;
-      display: flex;
-      flex-direction: column;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
     }
+    
+    /* 导航栏样式修改 */
+    .header {
+      background-color: #102a3c;
+      padding: 1rem 3rem;
+    }
+    
+    .logo a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    /* 主内容区域 */
     main {
+      display: flex;
+      padding: 0;
+      background-color: #fff;
+    }
+    
+    .left-panel {
+      width: 35%;
+      padding: 2rem;
+      background-color: #f5f5f1;
+    }
+    
+    .right-panel {
+      width: 65%;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* 标题样式 */
+    h1 {
+      font-size: 2.5rem;
+      color: #102a3c;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    
+    /* 区域切换按钮 */
+    .mode-switch {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+    
+    .mode-switch button {
+      padding: 0.8rem 1.5rem;
+      border: 1px solid #102a3c;
+      background: transparent;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .mode-switch button:first-child {
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    
+    .mode-switch button:last-child {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+    
+    .mode-switch button.active {
+      background-color: #102a3c;
+      color: white;
+    }
+    
+    /* 日期选择器 */
+    .date-selectors {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .date-group {
       flex: 1;
+    }
+    
+    .date-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #102a3c;
+    }
+    
+    .date-group select {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    
+    /* 燃油类型按钮 - 修改为一行 */
+    .fuel-buttons {
+      display: flex;
+      justify-content: space-between; /* 均匀分布按钮 */
+      margin-bottom: 2rem;
+      width: 100%;
+    }
+    
+    .fuel-btn {
+      width: 17%; /* 调整宽度以便五个按钮在一行 */
+      aspect-ratio: 1/1; /* 保持正方形 */
+      border: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .fuel-btn.active {
+      box-shadow: 0 0 0 3px #fff, 0 0 0 5px #102a3c; /* 选中状态添加双重边框效果 */
+    }
+    
+    .fuel-btn[data-fuel="E10"] {
+      background-color: #102a3c;
+      color: white;
+    }
+    
+    .fuel-btn[data-fuel="91"] {
+      background-color: #4a90e2;
+    }
+    
+    .fuel-btn[data-fuel="95"] {
+      background-color: #e28b45;
+    }
+    
+    .fuel-btn[data-fuel="98"] {
+      background-color: #d0211c;
+    }
+    
+    .fuel-btn[data-fuel="D"] {
+      background-color: #000;
+    }
+    
+    /* 图表区域 - 修复图片溢出问题 */
+    .chart-area {
+      border: 2px solid #4a90e2;
+      border-radius: 5px;
+      padding: 1rem;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: hidden; /* 防止内容溢出 */
+    }
+    
+    .chart-area img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+    
+    /* 错误消息样式 */
+    .error-message {
+      color: red;
+      font-size: 0.8rem;
+    }
+    
+    .invalid-label {
+      color: red;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      
+      .left-panel, .right-panel {
+        width: 100%;
+      }
+      
+      /* 小屏幕上燃油按钮调整 */
+      .fuel-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+      
+      .fuel-btn {
+        width: 60px;
+        height: 60px;
+      }
     }
   </style>
 </head>
@@ -37,7 +240,7 @@
   </header>
 
   <!-- Main Section -->
-  <main class="container historical-layout">
+  <main>
     <!-- 左侧控制面板 -->
     <div class="left-panel">
       <h1>Historical Fuel Price</h1>
@@ -47,24 +250,26 @@
         <button id="btn-world">World</button>
       </div>
 
-      <div class="selector-group">
-        <label for="from-date">From
+      <div class="date-selectors">
+        <div class="date-group">
+          <label for="from-date">From</label>
           <select id="from-date">
             <option value="">--</option>
           </select>
-        </label>
+        </div>
 
-        <label for="to-date" id="to-label">To
+        <div class="date-group">
+          <label for="to-date" id="to-label">To</label>
           <select id="to-date">
             <option value="">--</option>
           </select>
           <small id="date-error" class="error-message"></small>
-        </label>
+        </div>
       </div>
 
-      <div class="fuel-options">
+      <div class="fuel-buttons">
         <button class="fuel-btn" data-fuel="E10">E10</button>
-        <button class="fuel-btn active" data-fuel="91">91</button>
+        <button class="fuel-btn" data-fuel="91">91</button>
         <button class="fuel-btn" data-fuel="95">95</button>
         <button class="fuel-btn" data-fuel="98">98</button>
         <button class="fuel-btn" data-fuel="D">D</button>
@@ -72,15 +277,15 @@
     </div>
 
     <!-- 右侧图表区 -->
-    <div class="right-panel chart-area">
-      <h3 id="chart-title">Queensland</h3>
-      <img id="chart-img" src="image/Queensland_All.svg" alt="Fuel Price Chart" style="width: 100%; max-width: 800px; height: auto;" />
+    <div class="right-panel">
+      <div class="chart-area">
+        <img id="chart-img" src="image/Queensland_All.svg" alt="Fuel Price Chart" />
+      </div>
     </div>
   </main>
 
   <!-- Footer -->
   <footer>
-    <!-- Dark blue footer with columns -->
     <div class="footer-content">
         <div class="footer-section">
             <h4>Find us</h4>
@@ -109,8 +314,7 @@
             </ul>
         </div>
     </div>
-
-    <!-- Copyright section -->
+    
     <div class="footer-bottom">
         <p>FuelTrack AU</p>
         <p>Smart Fuel Decisions Start here</p>
@@ -119,6 +323,71 @@
 
   <!-- 脚本 -->
   <script src="js/link.js"></script>
-  <script src="js/historical.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 构建月份选项（2022-01 到 2024-12）
+      const months = [];
+      const fromDate = document.getElementById('from-date');
+      const toDate = document.getElementById('to-date');
+      
+      for (let y = 2022; y <= 2024; y++) {
+        for (let m = 1; m <= 12; m++) {
+          const val = `${y}-${m.toString().padStart(2, '0')}`;
+          months.push(val);
+        }
+      }
+      
+      months.forEach(month => {
+        fromDate.add(new Option(month, month));
+        toDate.add(new Option(month, month));
+      });
+      
+      // 区域按钮切换
+      const modeBtns = document.querySelectorAll('.mode-switch button');
+      modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          updateChart(btn.textContent); 
+        });
+      });
+      
+      // 油品按钮点击
+      const fuelBtns = document.querySelectorAll('.fuel-btn');
+      let activeFuel = '91'; // 默认选中的燃油类型
+      
+      // 设置默认选中的燃油按钮
+      document.querySelector('.fuel-btn[data-fuel="91"]').classList.add('active');
+      
+      fuelBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          fuelBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeFuel = btn.dataset.fuel;
+          updateChart();
+        });
+      });
+      
+      // 更新图表函数
+      function updateChart(region = 'Queensland') {
+        const chartImg = document.getElementById('chart-img');
+        chartImg.src = `image/${region}_All.svg?t=${Date.now()}`;
+      }
+      
+      // 日期验证
+      toDate.addEventListener('change', () => {
+        const toLabel = document.getElementById('to-label');
+        const dateError = document.getElementById('date-error');
+        
+        if (fromDate.value && toDate.value <= fromDate.value) {
+          toLabel.classList.add('invalid-label');
+          dateError.textContent = 'To date must be after From date.';
+        } else {
+          toLabel.classList.remove('invalid-label');
+          dateError.textContent = '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
