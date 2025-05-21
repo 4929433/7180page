@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/tablestyle.css" />
   <link rel="stylesheet" href="css/FuelTrack AU.css">
+  <link rel="stylesheet" href="css/roadside-content.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -23,27 +24,89 @@
     </nav>
   </header>
 
-  <main class="container">
-    <img src="image/roadsidenumber.png" alt="Roadside Assistance" class="hero-image" style="width:100%; border-radius: 8px; margin-top: 1rem;" />
-
-    <h1 class="roadside-title">Roadside Assistance</h1>
-    <p style="text-align: center; font-size: 1.8rem; margin: 1rem 0;">
-      📞 000 - 000 - 0000
-    </p>
-    <p style="text-align: center; color: #003049; font-weight: 600;">
-      <a href="#" style="color: #003049; text-decoration: underline;">24/7 Emergency Service</a>
-    </p>
-
-    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
-      <div style="width: 100px; height: 100px; background: #ddd; border-radius: 10px;"></div>
-      <div style="width: 100px; height: 100px; background: #ddd; border-radius: 10px;"></div>
-      <div style="width: 100px; height: 100px; background: #ddd; border-radius: 10px;"></div>
-      <div style="width: 100px; height: 100px; background: #ddd; border-radius: 10px;"></div>
+  <!-- 主要内容 -->
+  <main>
+    <!-- Hero 区域使用现有的背景图片 -->
+    <div class="hero-section">
+      
     </div>
+
+    <!-- 服务选项区域 -->
+    <section>
+      <h2 class="section-title">Roadside assistance options</h2>
+      
+      <div class="services-grid">
+        <!-- 服务1：电池救援 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-car-battery"></i>
+          </div>
+          <h3 class="service-title">Battery assistance</h3>
+          <p class="service-description">
+            If you get a flat battery, we'll jump-start your vehicle; or, if necessary, replace the battery.
+          </p>
+        </div>
+        
+        <!-- 服务2：拖车服务 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-truck-pickup"></i>
+          </div>
+          <h3 class="service-title">Breakdown tow</h3>
+          <p class="service-description">
+            If your car cannot move, please get towing assistance.
+          </p>
+        </div>
+        
+        <!-- 服务3：轮胎更换 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <h3 class="service-title">Type change</h3>
+          <p class="service-description">
+            If you get a flat tyre, we'll replace it with the spare tyre supplied with your vehicle.
+          </p>
+        </div>
+        
+        <!-- 服务4：紧急加油 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-gas-pump"></i>
+          </div>
+          <h3 class="service-title">Emergency fuel</h3>
+          <p class="service-description">
+            If you are out of fuel, we will refuel you to ensure you get to the nearest gas station.
+          </p>
+        </div>
+        
+        <!-- 服务5：钥匙救援 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-key"></i>
+          </div>
+          <h3 class="service-title">Key rescue</h3>
+          <p class="service-description">
+            If your car cannot move, please get towing assistance.
+          </p>
+        </div>
+        
+        <!-- 服务6：检查服务 -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-wrench"></i>
+          </div>
+          <h3 class="service-title">Check</h3>
+          <p class="service-description">
+            If your car breaks down and you don't know how to fix it, we will provide on-site inspection and repair services.
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <!-- Footer -->
   <footer>
-    <!-- Dark blue footer with columns -->
     <div class="footer-content">
         <div class="footer-section">
             <h4>Find us</h4>
@@ -73,7 +136,6 @@
         </div>
     </div>
 
-    <!-- Copyright section -->
     <div class="footer-bottom">
         <p>FuelTrack AU</p>
         <p>Smart Fuel Decisions Start here</p>
