@@ -253,3 +253,68 @@
   margin-top: 5px;
   text-align: right;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+.calculator-page {
+  display: flex;
+  height: 100%;
+}
+
+#googleMap {
+  width: 75%;
+  min-width: 500px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.info-section {
+  width: 25%;
+  max-height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.fuel-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.fuel-controls label {
+  font-weight: 600;
+}
+
+.fuel-controls select,
+.fuel-controls input[type="text"],
+.calc-type button,
+.calculate-btn {
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+.calc-type {
+  display: flex;
+  gap: 10px;
+}
+
+.calc-type button.active {
+  background-color: #003049;
+  color: white;
+}
+
+.calculate-btn {
+  background-color: #c2461a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
