@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
     
-    // 计算按钮功能（可选，仅作示例）
+
     const calculateBtn = document.querySelector('.calculate-btn');
     if (calculateBtn) {
       calculateBtn.addEventListener('click', function() {

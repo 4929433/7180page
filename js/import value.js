@@ -56,3 +56,53 @@ function showError(inputElement, message) {
   const errorMsg = formGroup.querySelector(".error-message");
   errorMsg.textContent = message;
 }
+
+
+
+
+
+
+
+const SHEETDB_API = 'https://sheetdb.io/api/v1/ixwxxwtb81gts';
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  const fuelType = document.getElementById('fuel-type').value;
+  const amountType = document.getElementById('amount-type').value;
+  const inputValue = parseFloat(document.getElementById('value-input').value);
+
+  if (!fuelType || !amountType || isNaN(inputValue)) {
+    alert('Please fill in all fields correctly.');
+    return;
+  }
+
+  // 拉取最新数据，并同时计算 total
+  fetch(SHEETDB_API)
+    .then(res => res.json())
+    .then(data => {
+      const stations = data.map(station => {
+        const raw = parseFloat(station[`${fuelType}_price`]);
+        if (!raw || isNaN(raw)) return null;
+        const price = raw / 100; // 分→元
+        return {
+          name: station.name,
+          price,
+          total: amountType === 'volume'
+            ? price * inputValue    // 升数模式：升×价＝总价
+            : inputValue / price    // 金额模式：钱 ÷ 单价＝升数
+        };
+      }).filter(Boolean);
+
+      // 存储并跳转
+      localStorage.setItem('fuelCalcResult', JSON.stringify({
+        fuelType,
+        amountType,
+        inputValue,
+        stations
+      }));
+      window.location.href = 'calculator.html';
+    })
+    .catch(err => {
+      console.error(err);
+      alert('Failed to fetch station data.');
+    });
+});

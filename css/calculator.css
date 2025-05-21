@@ -246,3 +246,10 @@
 .collapsible-footer.expanded .footer-toggle i {
   transform: rotate(180deg);
 }
+.station-price-detail {
+  font-size: 0.9rem;
+  color: #3aa832;
+  font-weight: 600;
+  margin-top: 5px;
+  text-align: right;
+}
