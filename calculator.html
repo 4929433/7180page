@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FuelTrack AU</title>
-  <link rel="stylesheet" href="calculator_googlemap.css" />
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9xee3RLxavWyKEEjUm88mfN1tMbL-u0c&callback=initMap" async defer></script>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/tablestyle.css" />
@@ -73,7 +72,7 @@ function initMap() {
         new google.maps.Marker({
           position: pos,
           map: map,
-          title: "Your location"
+          title: " Hi, Your are here."
         });
       },
       function () {
@@ -116,7 +115,7 @@ function initMap() {
       <div class="lowest-price-banner">Lowest Price</div>
       <div class="station-card highlighted">
         <div>
-          <div class="station-name">Pearl Energy Moorooka</div>
+          <div class="station-name" >Pearl Energy Moorooka</div>
           <div class="station-distance">0.2km</div>
           <div class="station-nav">Navigation</div>
         </div>
@@ -128,7 +127,7 @@ function initMap() {
       
       <!-- 修改：添加ID以便JavaScript操作 -->
       <div class="station-card-list" id="stationCardList">
-        <div class="station-card">
+        <div class="station-card" >
           <div>
             <div class="station-name">7-Eleven</div>
             <div class="station-distance">0.8km</div>
