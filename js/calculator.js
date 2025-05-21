@@ -127,4 +127,65 @@ function renderCards({ amountType, inputValue, stations }) {
   });
 }
 
+// 1️⃣ 加载地图并添加多个加油站
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("googleMap"), {
+    center: { lat: -27.4698, lng: 153.0251 },
+    zoom: 14,
+  });
 
+  const infoWindow = new google.maps.InfoWindow();
+
+  // 用户定位
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        const userPos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+
+        new google.maps.Marker({
+          position: userPos,
+          map,
+          title: "You are here",
+          icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+        });
+
+        map.setCenter(userPos);
+      },
+      function () {
+        console.warn("Geolocation failed");
+      }
+    );
+  }
+
+  // 2️⃣ 添加加油站标记
+  const stationCards = document.querySelectorAll(".station-card");
+
+  stationCards.forEach((card) => {
+    const lat = parseFloat(card.getAttribute("data-lat"));
+    const lng = parseFloat(card.getAttribute("data-lng"));
+    const name = card.getAttribute("data-name");
+
+    if (!isNaN(lat) && !isNaN(lng)) {
+      const marker = new google.maps.Marker({
+        position: { lat, lng },
+        map,
+        title: name,
+      });
+
+      marker.addListener("click", () => {
+        infoWindow.setContent(name);
+        infoWindow.open(map, marker);
+      });
+
+      // 3️⃣ 点击“Navigation”按钮跳转 Google Maps 导航
+      const navButton = card.querySelector(".station-nav");
+      navButton.style.cursor = "pointer";
+      navButton.addEventListener("click", () => {
+        window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, "_blank");
+      });
+    }
+  });
+}
