@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="css/historical.css" />
   <link rel="stylesheet" href="css/FuelTrack AU.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- 添加Chart.js库 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
       margin: 0;
@@ -173,22 +175,14 @@
       background-color: #000;
     }
     
-    /* 图表区域 - 修复图片溢出问题 */
+    /* 图表区域 - 修改为Canvas */
     .chart-area {
       border: 2px solid #4a90e2;
       border-radius: 5px;
       padding: 1rem;
       width: 100%;
-      height: 100%;
+      height: 500px; /* 固定高度 */
       box-sizing: border-box;
-      overflow: hidden; /* 防止内容溢出 */
-    }
-    
-    .chart-area img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-      object-fit: contain;
     }
     
     /* 错误消息样式 */
@@ -279,7 +273,7 @@
     <!-- 右侧图表区 -->
     <div class="right-panel">
       <div class="chart-area">
-        <img id="chart-img" src="image/Queensland_All.svg" alt="Fuel Price Chart" />
+        <canvas id="chart-canvas"></canvas>
       </div>
     </div>
   </main>
@@ -323,71 +317,7 @@
 
   <!-- 脚本 -->
   <script src="js/link.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // 构建月份选项（2022-01 到 2024-12）
-      const months = [];
-      const fromDate = document.getElementById('from-date');
-      const toDate = document.getElementById('to-date');
-      
-      for (let y = 2022; y <= 2024; y++) {
-        for (let m = 1; m <= 12; m++) {
-          const val = `${y}-${m.toString().padStart(2, '0')}`;
-          months.push(val);
-        }
-      }
-      
-      months.forEach(month => {
-        fromDate.add(new Option(month, month));
-        toDate.add(new Option(month, month));
-      });
-      
-      // 区域按钮切换
-      const modeBtns = document.querySelectorAll('.mode-switch button');
-      modeBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          modeBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          updateChart(btn.textContent); 
-        });
-      });
-      
-      // 油品按钮点击
-      const fuelBtns = document.querySelectorAll('.fuel-btn');
-      let activeFuel = '91'; // 默认选中的燃油类型
-      
-      // 设置默认选中的燃油按钮
-      document.querySelector('.fuel-btn[data-fuel="91"]').classList.add('active');
-      
-      fuelBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          fuelBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          activeFuel = btn.dataset.fuel;
-          updateChart();
-        });
-      });
-      
-      // 更新图表函数
-      function updateChart(region = 'Queensland') {
-        const chartImg = document.getElementById('chart-img');
-        chartImg.src = `image/${region}_All.svg?t=${Date.now()}`;
-      }
-      
-      // 日期验证
-      toDate.addEventListener('change', () => {
-        const toLabel = document.getElementById('to-label');
-        const dateError = document.getElementById('date-error');
-        
-        if (fromDate.value && toDate.value <= fromDate.value) {
-          toLabel.classList.add('invalid-label');
-          dateError.textContent = 'To date must be after From date.';
-        } else {
-          toLabel.classList.remove('invalid-label');
-          dateError.textContent = '';
-        }
-      });
-    });
-  </script>
+  <!-- 添加新的JavaScript文件 -->
+  <script src="js/dynamic-chart.js"></script>
 </body>
 </html>
