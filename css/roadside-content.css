@@ -1,0 +1,174 @@
+/* Roadside Assistance 内容区域样式 */
+
+/* Hero 区域样式 */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 500px; /* 更高的高度，更接近图片的原始宽高比 */
+    background-color: #f0f0f0; /* 添加背景色作为备用 */
+    background-image: url('../image/roadsidenumber.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #102a3c;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-title {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-title i {
+    margin-left: 10px;
+  }
+  
+  .phone-number {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .phone-number i {
+    margin-right: 10px;
+  }
+  
+  .emergency-service {
+    font-size: 1rem;
+  }
+  
+  /* 服务选项标题 */
+  .section-title {
+    font-size: 1.8rem;
+    margin: 30px 0;
+    color: #102a3c;
+    padding-left: 50px; /* 向右偏移标题 */
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* 服务卡片网格布局 */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+    max-width: 1200px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+  }
+  
+  /* 单个服务卡片 */
+  .service-card {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 15px 15px; /* 进一步减少内边距 */
+    text-align: center;
+    height: 270px; /* 保持原有高度 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 从顶部开始布局 */
+    overflow: hidden; /* 防止内容溢出 */
+    box-sizing: border-box; /* 确保内边距计算在卡片高度内 */
+  }
+  
+  /* 服务图标 */
+  .service-icon {
+    font-size: 4.8rem; /* 稍微缩小图标 */
+    color: #102a3c;
+    margin-bottom: 8px; /* 大幅减少底部间距 */
+    line-height: 1;
+  }
+  
+  /* 服务标题 */
+  .service-title {
+    font-size: 1.8rem;
+    margin-bottom: 8px; /* 大幅减少底部间距 */
+    font-weight: 600;
+    color: #102a3c;
+    line-height: 1.2;
+  }
+  
+  /* 服务描述 */
+  .service-description {
+    color: #333;
+    font-size: 1.15rem;
+    line-height: 1.3; /* 进一步减小行高 */
+    /* 移除行数限制，让所有文字都显示 */
+    overflow: visible;
+    margin: 0;
+  }
+  
+  /* 响应式布局 */
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .hero-section {
+      height: 350px;
+    }
+    
+    .section-title {
+      padding-left: 30px;
+    }
+    
+    /* 调整较小屏幕上的图标和字体大小 */
+    .service-icon {
+      font-size: 4.2rem;
+      margin-bottom: 5px;
+    }
+    
+    .service-title {
+      font-size: 1.7rem;
+      margin-bottom: 5px;
+    }
+    
+    .service-description {
+      font-size: 1.1rem;
+    }
+    
+    /* 调整卡片在移动设备上的样式 */
+    .service-card {
+      padding: 15px 10px;
+      height: auto; /* 在移动设备上使用自动高度 */
+      min-height: 200px; /* 设置最小高度 */
+      margin-bottom: 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-section {
+      height: 280px; /* 更小屏幕上进一步减少高度 */
+    }
+    
+    .section-title {
+      padding-left: 20px; /* 在更小屏幕上进一步减少偏移量 */
+    }
+  }
