@@ -318,3 +318,21 @@ html, body {
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .calculator-page {
+    flex-direction: column;
+  }
+
+  #googleMap {
+    width: 100%;
+    height:  100vh; 
+    position: relative;
+  }
+
+  .info-section {
+    width: 100%;
+    max-height: unset;
+    padding: 15px;
+  }
+}
