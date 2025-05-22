@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FuelTrack AU - Site Information</title>
+    <!-- Added base stylesheets for consistency -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <link rel="stylesheet" href="css/tablestyle.css" />
+    <!-- Keep FuelTrack AU CSS for page-specific styles -->
+    <link rel="stylesheet" href="css/FuelTrack AU.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Updated header to match homepage structure -->
+        <header class="header">
+            <div class="logo"><a href="homepage.html">FuelTrack AU</a></div>
+            <nav class="nav">
+                <div class="hamburger" id="hamburger">&#9776;</div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="calculator.html">Fuel Station Calculator</a></li>
+                    <li><a href="historicalprices.html">Historical Prices</a></li>
+                    <li><a href="roadside.html">Roadside Assistance</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content area -->
+        <main class="main-content">
+            <!-- Back button as "<" symbol -->
+            <div class="back-button">
+                <a href="calculator.html">&lt;</a>
+            </div>
+            
+            <!-- Left info area -->
+            <section class="station-info">
+                <div class="station-image">
+                    <img src="image/711.png" alt="Station Image">
+                </div>
+                <div class="station-details">
+                    <h2>Loading...</h2>
+                    <p class="station-type">Petrol Station</p>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Loading address...</p>
+                        <button class="copy-btn" data-clipboard-text="">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Loading hours...</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-globe"></i>
+                        <p>Loading website...</p>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>Loading phone...</p>
+                        <button class="copy-btn" data-clipboard-text="">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Middle review area -->
+            <section class="review-section">
+                <h3>REVIEW</h3>
+                <div class="overall-rating">
+                    <h2>0.0</h2>
+                </div>
+                
+                <div class="rating-bars">
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <p>Environment</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <p>Service</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <p>Fuel Quality</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <p>Facilities</p>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 0%"></div>
+                        </div>
+                        <p>Cleanliness</p>
+                    </div>
+                </div>
+                
+                <div class="your-review">
+                    <h3>Your Review</h3>
+                    
+                    <div class="review-categories">
+                        <div class="review-category">
+                            <p>Environment</p>
+                            <div class="star-rating" data-category="environment">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Service</p>
+                            <div class="star-rating" data-category="service">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Fuel Quality</p>
+                            <div class="star-rating" data-category="fuel">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Facilities</p>
+                            <div class="star-rating" data-category="facilities">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="review-category">
+                            <p>Cleanliness</p>
+                            <div class="star-rating" data-category="cleanliness">
+                                <span class="star" data-value="1"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="far fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="far fa-star"></i></span>
+                            </div>
+                            
+                            <!-- Submit Price按钮放在这个容器内 -->
+                            <button class="submit-btn">Submit Price</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right service area -->
+            <section class="service-section">
+                <h3>SERVICE</h3>
+                
+                <!-- 服务项目将通过JavaScript动态加载 -->
+                <!-- 如果API没有数据，会显示默认服务 -->
+            </section>
+        </main>
+
+        <!-- Updated footer with columns -->
+        <footer>
+            <!-- Dark blue footer with columns -->
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Find us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> X</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> Youtube</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Terms and conditions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="#">Feedback on issues</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact us</h4>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-phone"></i> Phone</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Message</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright section -->
+            <div class="footer-bottom">
+                <p>FuelTrack AU</p>
+                <p>Smart Fuel Decisions Start here</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/link.js"></script>
+    <script src="js/FuelTrack AU.js"></script>
+    <script src="js/station.js"></script>
+</body>
+</html>
