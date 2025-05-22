@@ -35,14 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
       const stationCard = this.closest('.station-card');
       const stationName = stationCard.querySelector('.station-name').textContent;
       
-      console.log(`开始导航至: ${stationName}`);
+      console.log(`Start navigation to: ${stationName}`);
       
       const originalText = this.textContent;
       this.textContent = 'Navigating...';
       
       setTimeout(() => {
         this.textContent = originalText;
-        alert(`导航到 ${stationName} 已启动`);
+        alert(`Navigate to ${stationName} Started`);
         
       }, 1000);
     });
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const fuelType = document.getElementById('fuelType');
   if (fuelType) {
     fuelType.addEventListener('change', function() {
-      console.log(`已选择燃油类型: ${this.value}`);
+      console.log(`Fuel type selected: ${this.value}`);
 
     });
   }
@@ -82,13 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
     calculateBtn.addEventListener('click', function() {
       const inputValue = document.getElementById('inputValue').value;
       if (!inputValue) {
-        alert('请输入数值');
+        alert('Please enter a value');
         return;
       }
       
-      console.log(`开始计算，输入值: ${inputValue}`);
+      console.log(`Start calculating, enter the value: ${inputValue}`);
       
-      alert(`计算完成！您可以查看附近的加油站价格。`);
+      alert(`The calculation is completed!You can check the prices of nearby gas stations`);
     });
   }
 });
