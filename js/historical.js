@@ -7,7 +7,7 @@ const toDate = document.getElementById('to-date');
 const toLabel = document.getElementById('to-label');
 const dateError = document.getElementById('date-error');
 
-// 构建月份选项（2022-01 到 2024-12）
+// Build month options
 const months = [];
 for (let y = 2022; y <= 2024; y++) {
   for (let m = 1; m <= 12; m++) {
@@ -20,31 +20,31 @@ months.forEach(month => {
   toDate.add(new Option(month, month));
 });
 
-// 初始状态
+// Initial status
 let currentRegion = "Queensland";
-let currentFuel = "91"; // 虽未决定图，但用于刷新逻辑
+let currentFuel = "91";
 
-// 区域按钮切换
+// Area button toggle
 modeBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     modeBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentRegion = btn.textContent;
-    updateChart(); // 切换图
+    updateChart();
   });
 });
 
-// 油品按钮点击后刷新（但不切换图）
+// Refresh after clicking the oil button
 fuelBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     fuelBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     currentFuel = btn.dataset.fuel;
-    updateChart(); // 触发刷新，不换图
+    updateChart(); 
   });
 });
 
-// 日期验证
+// Date verification
 toDate.addEventListener('change', () => {
   if (fromDate.value && toDate.value <= fromDate.value) {
     toLabel.classList.add('invalid-label');
@@ -55,8 +55,8 @@ toDate.addEventListener('change', () => {
   }
 });
 
-// 根据 currentRegion 切换图（只换地区）
+// Switch diagram according to currentRegion
 function updateChart() {
   chartTitle.textContent = `${currentRegion}`;
-  chartImg.src = `image/${currentRegion}_All.svg?t=${Date.now()}`; // 加时间戳强制刷新
+  chartImg.src = `image/${currentRegion}_All.svg?t=${Date.now()}`; 
 }

@@ -3,35 +3,35 @@ function getQueryParam(param) {
     return urlParams.get(param);
   }
   
-  // 获取URL参数
+  // Get URL
   const stationParam = getQueryParam("id") || "0";
   console.log("🔍 Raw URL parameter:", stationParam);
   
-  // 直接转换为数组索引（0-based）
+  // Convert to array index
   let stationIndex = parseInt(stationParam);
   if (isNaN(stationIndex)) {
-    stationIndex = 0; // 默认第一个
+    stationIndex = 0; // Default
   }
   console.log("📍 Target station index:", stationIndex);
   
-  // 获取所有数据
+  // Fetch all data
   fetch('https://sheetdb.io/api/v1/ixwxxwtb81gts')
     .then(res => res.json())
     .then(allData => {
       console.log("📊 Total stations available:", allData.length);
       
-      // 显示所有可用站点
+      // Display all available stations
       allData.forEach((station, index) => {
         console.log(`Station ${index}:`, station.name || "Unnamed Station");
       });
       
-      // 确保索引在有效范围内
+      // Ensure index is within valid range
       if (stationIndex >= allData.length) {
         console.log("⚠️ Index out of range, using index 0");
         stationIndex = 0;
       }
       
-      // 直接使用索引获取站点
+      // Use index to get target station directly
       const targetStation = allData[stationIndex];
       console.log("✅ Selected station:", {
         index: stationIndex,
@@ -49,30 +49,30 @@ function getQueryParam(param) {
   function displayStationData(station) {
     console.log("🏪 Displaying station data for:", station.name);
     
-    // ===== 基本信息绑定 =====
+    // ===== Bind basic info =====
     document.querySelector(".station-details h2").textContent = station.name || "Unknown Station";
   
-    // 地址
+    // Address
     const addressP = document.querySelector(".info-item:nth-of-type(1) p");
     const addressCopy = document.querySelector(".info-item:nth-of-type(1) .copy-btn");
     const address = station.address || "Address not available";
     addressP.textContent = address;
     addressCopy.setAttribute("data-clipboard-text", address);
   
-    // 开放时间
+    // Opening hours
     document.querySelector(".info-item:nth-of-type(2) p").textContent = station.open_hours || "Open 24 hours";
   
-    // 网站
+    // Website
     document.querySelector(".info-item:nth-of-type(3) p").textContent = station.website || "None";
   
-    // 电话
+    // Phone
     const phoneP = document.querySelector(".info-item:nth-of-type(4) p");
     const phoneCopy = document.querySelector(".info-item:nth-of-type(4) .copy-btn");
     const phone = station.phone_number || "None";
     phoneP.textContent = phone;
     phoneCopy.setAttribute("data-clipboard-text", phone);
   
-    // ===== 评分条处理 =====
+    // ===== Rating bars =====
     const ratingKeys = [
       "score_environment",
       "score_service", 
@@ -91,11 +91,11 @@ function getQueryParam(param) {
       bar.style.width = (score * 20) + "%";
     });
   
-    // 计算并显示平均分
+    // Calculate and display average score
     const average = (ratingValues.reduce((sum, v) => sum + v, 0) / ratingValues.length).toFixed(1);
     document.querySelector(".overall-rating h2").textContent = average;
   
-    // ===== 服务项处理 =====
+    // ===== Service =====
     const serviceSection = document.querySelector(".service-section");
     const oldServices = serviceSection.querySelectorAll(".service-item");
     oldServices.forEach(el => el.remove());
@@ -126,7 +126,7 @@ function getQueryParam(param) {
       }
     }
   
-    // 默认服务项
+    // Default service
     if (!inserted) {
       const defaultServices = [
         {
@@ -168,7 +168,7 @@ function getQueryParam(param) {
       });
     }
   
-    // 更新页面标题
+    // Update page title
     document.title = `FuelTrack AU - ${station.name || 'Station Details'}`;
     console.log("✅ Station data displayed successfully for:", station.name);
   }

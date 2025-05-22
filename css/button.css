@@ -16,20 +16,20 @@
   overflow: hidden;
 }
 
-/* 悬停时：边框发光、转圈动画 */
+/* When hovering: border glows, circle animation */
 .BTN:hover {
   border-color: var(--text-color, #ffffff);
   box-shadow: 0 0 8px var(--accent-color, #d84900), 0 0 12px var(--accent-color, #d84900);
 }
 
-/* 激活点击状态 */
+/* Activate click status */
 .BTN:active {
   transform: scale(0.95);
   background-color: var(--secondary-color, #b33a00);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
-/* 可选：可聚焦样式增强辅助功能 */
+/* Focusable style */
 .BTN:focus {
   outline: 2px solid var(--accent-color, #d84900);
   outline-offset: 2px;

@@ -28,10 +28,10 @@ function initCalculation() {
   const buttons = document.querySelectorAll('.calc-type button');
   const btnCalc = document.querySelector('.calculate-btn');
 
-  // 页面加载时立即获取所有站点数据显示
+  // Get all site data immediately when the page loads
   loadInitialStations();
 
-  // 切换按钮样式
+  // Toggle button style
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
@@ -39,7 +39,7 @@ function initCalculation() {
     });
   });
 
-  // Calculate按钮点击事件
+  // Calculate Button click event
   btnCalc.addEventListener('click', () => {
     const fuelType = fuelTypeEl.value;
     const inputVal = parseFloat(inputEl.value);
@@ -110,7 +110,7 @@ function renderInitialCards(stations) {
   console.log("🎨 Rendering initial cards...");
   stations.sort((a, b) => a.price - b.price);
 
-  // 最低价卡片
+  // Lowest price card
   const lowest = stations[0];
   const topCard = document.querySelector('.station-card.highlighted');
   
@@ -129,7 +129,7 @@ function renderInitialCards(stations) {
     console.log("🏆 Top card:", lowest.name, "Index:", lowest.arrayIndex);
   }
 
-  // 其他卡片
+  // Other cards
   const list = document.getElementById('stationCardList');
   if (list) {
     list.innerHTML = '';
@@ -153,7 +153,7 @@ function renderInitialCards(stations) {
     });
   }
 
-  // 添加点击事件
+  // Add a click event
   addCardClicks();
 }
 
@@ -163,7 +163,7 @@ function renderCards({ amountType, inputValue, stations }) {
   console.log("🎨 Rendering calculated cards...");
   stations.sort((a, b) => a.price - b.price);
 
-  // 最低价卡片
+  // Lowest price card
   const lowest = stations[0];
   const topCard = document.querySelector('.station-card.highlighted');
   const topDetail = amountType === 'money'
@@ -185,7 +185,7 @@ function renderCards({ amountType, inputValue, stations }) {
     topCard.setAttribute('data-index', lowest.arrayIndex);
   }
 
-  // 其他卡片
+  // Other cards
   const list = document.getElementById('stationCardList');
   if (list) {
     list.innerHTML = '';
@@ -213,7 +213,7 @@ function renderCards({ amountType, inputValue, stations }) {
     });
   }
 
-  // 重新添加点击事件
+  // Add click event again
   addCardClicks();
 }
 
@@ -223,14 +223,13 @@ function addCardClicks() {
   console.log("🔗 Found cards:", cards.length);
   
   cards.forEach((card, i) => {
-    // 移除旧的事件监听器
     card.onclick = null;
     
-    // 添加点击事件
+    // Add a click event
     card.addEventListener('click', function(e) {
       console.log("🖱️ Card clicked:", i);
       
-      // 检查是否点击了Navigation按钮
+      // Check if the Navigation button has been clicked
       if (e.target.classList.contains('station-nav') || e.target.closest('.station-nav')) {
         console.log("🚫 Navigation button clicked");
         e.stopPropagation();
@@ -241,7 +240,7 @@ function addCardClicks() {
         return;
       }
       
-      // 获取索引并跳转
+      // Get the index and jump
       const index = this.getAttribute('data-index');
       const stationName = this.querySelector('.station-name').textContent;
       
@@ -255,7 +254,7 @@ function addCardClicks() {
       }
     });
     
-    // 添加悬停效果
+    // Add hover effect
     card.addEventListener('mouseenter', function() {
       this.style.transform = 'translateY(-2px)';
       this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
@@ -266,7 +265,7 @@ function addCardClicks() {
       this.style.boxShadow = 'none';
     });
     
-    // 验证索引
+    // Verify the index
     const index = card.getAttribute('data-index');
     console.log(`🔗 Card ${i} index:`, index);
   });

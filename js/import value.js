@@ -1,38 +1,38 @@
-// 等待DOM加载完成
+// Wait for the DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-  // 检查当前页面类型，确定需要执行哪些功能
+  // Check the current page type to determine which functions you need to perform
   const isHomePage = window.location.pathname.includes('homepage.html') || 
                      window.location.pathname === '/' || 
                      window.location.pathname === '';
   const isCalculatorPage = window.location.pathname.includes('calculator.html');
   
-  // 如果是主页，执行表单功能
+ 
   if (isHomePage) {
     initMainPageFunctions();
   }
   
-  // 如果是计算器页面，执行计算器相关功能
+
   if (isCalculatorPage) {
     initCalculatorFunctions();
   }
 });
 
-// 主页表单功能
+// Home page form function
 function initMainPageFunctions() {
-  // 安全地获取表单元素
+  // Get form elements
   const amountTypeSelect = document.getElementById("amount-type");
   const unitIcon = document.getElementById("unit-icon");
   const fuelTypeSelect = document.getElementById("fuel-type");
   const valueInput = document.getElementById("value-input");
   const startBtn = document.getElementById("start-btn");
   
-  // 检查必要元素是否存在
+  // Check whether the necessary elements exist
   if (!amountTypeSelect || !unitIcon || !fuelTypeSelect || !valueInput || !startBtn) {
     console.log("主页表单元素未找到，跳过初始化");
     return;
   }
   
-  // 根据选择的类型更改图标
+  // Change icon according to the type you selected
   amountTypeSelect.addEventListener("change", function () {
     const selected = this.value;
     if (selected === "volume") {
@@ -44,40 +44,40 @@ function initMainPageFunctions() {
     }
   });
   
-  // 表单验证
+  // Form Verification
   startBtn.addEventListener("click", function () {
     let isValid = true;
     
-    // 重置之前的错误
+    // Reset error
     document.querySelectorAll(".error-message").forEach(el => el.textContent = "");
     [fuelTypeSelect, amountTypeSelect, valueInput].forEach(input => input.classList.remove("error"));
     
-    // 验证燃油类型
+    // Verify fuel type
     if (fuelTypeSelect.value === "") {
       showError(fuelTypeSelect, "Please select a fuel type.");
       isValid = false;
     }
     
-    // 验证金额类型
+    // Verification amount type
     if (amountTypeSelect.value === "") {
       showError(amountTypeSelect, "Please choose volume or amount.");
       isValid = false;
     }
     
-    // 验证数值
+    // Verify the value
     if (valueInput.value.trim() === "" || Number(valueInput.value) <= 0) {
       showError(valueInput, "Please enter a valid number.");
       isValid = false;
     }
     
-    // 如果验证通过，提交表单数据
+    // If the verification is passed, submit the form data
     if (isValid) {
       submitFormData(fuelTypeSelect.value, amountTypeSelect.value, parseFloat(valueInput.value));
     }
   });
 }
 
-// 显示错误信息
+// Display error message
 function showError(inputElement, message) {
   if (!inputElement) return;
   
@@ -91,7 +91,7 @@ function showError(inputElement, message) {
   }
 }
 
-// 提交表单数据并处理API请求
+// Submit form data and process API requests
 function submitFormData(fuelType, amountType, inputValue) {
   const SHEETDB_API = 'https://sheetdb.io/api/v1/ixwxxwtb81gts';
   
@@ -100,24 +100,24 @@ function submitFormData(fuelType, amountType, inputValue) {
     return;
   }
   
-  // 拉取最新数据，并同时计算 total
+  // Pull the latest data and calculate total at the same time
   fetch(SHEETDB_API)
     .then(res => res.json())
     .then(data => {
       const stations = data.map(station => {
         const raw = parseFloat(station[`${fuelType}_price`]);
         if (!raw || isNaN(raw)) return null;
-        const price = raw / 100; // 分→元
+        const price = raw / 100; 
         return {
           name: station.name,
           price,
           total: amountType === 'volume'
-            ? price * inputValue    // 升数模式：升×价＝总价
-            : inputValue / price    // 金额模式：钱 ÷ 单价＝升数
+            ? price * inputValue    
+            : inputValue / price    
         };
       }).filter(Boolean);
       
-      // 存储并跳转
+      // Store and jump
       localStorage.setItem('fuelCalcResult', JSON.stringify({
         fuelType,
         amountType,
@@ -132,39 +132,39 @@ function submitFormData(fuelType, amountType, inputValue) {
     });
 }
 
-// 计算器页面功能
+// Calculator page function
 function initCalculatorFunctions() {
   const calculateBtn = document.querySelector('.calculate-btn');
   const fuelTypeEl = document.getElementById('fuelType');
   const inputEl = document.getElementById('inputValue');
   const calcTypeButtons = document.querySelectorAll('.calc-type button');
   
-  // 检查必要元素是否存在
+  // Check whether the necessary elements exist
   if (!calculateBtn || !fuelTypeEl || !inputEl) {
     console.log("计算器页面元素未找到，跳过初始化");
     return;
   }
   
-  // 为计算按钮添加事件监听器
+  // Add event listener to the calculation button
   calculateBtn.addEventListener('click', function() {
     const fuelType = fuelTypeEl.value;
     const inputValue = parseFloat(inputEl.value);
     
-    // 检查输入值是否有效
+    // Check the input value
     if (!fuelType || isNaN(inputValue)) {
       alert('Please select fuel type and enter a valid number.');
       return;
     }
     
-    // 确定当前选择的计算类型
-    let amountType = 'money'; // 默认值
+    // Determine the current calculation type
+    let amountType = 'money'; // default value
     calcTypeButtons.forEach(btn => {
       if (btn.classList.contains('active')) {
         amountType = btn.textContent.includes('Price') ? 'money' : 'volume';
       }
     });
     
-    // 使用API获取数据
+    // Use API to get data
     const SHEETDB_API = 'https://sheetdb.io/api/v1/ixwxxwtb81gts';
     
     fetch(SHEETDB_API)
@@ -183,7 +183,7 @@ function initCalculatorFunctions() {
           };
         }).filter(Boolean);
         
-        // 存储结果
+        // Store results
         localStorage.setItem('fuelCalcResult', JSON.stringify({
           fuelType,
           amountType,
@@ -191,7 +191,7 @@ function initCalculatorFunctions() {
           stations
         }));
         
-        // 如果renderCards函数可用，直接调用它更新UI
+        // If the renderCards function is available, call it directly to update the UI
         if (typeof window.renderCards === 'function') {
           window.renderCards({
             fuelType,
@@ -200,7 +200,7 @@ function initCalculatorFunctions() {
             stations
           });
         } else {
-          console.log('renderCards函数不可用，已保存数据到localStorage');
+          console.log('renderCards function is not available, save data to localStorage');
           alert('Data updated. Please refresh to see results.');
         }
       })

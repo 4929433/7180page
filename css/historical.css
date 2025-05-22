@@ -35,7 +35,7 @@
   justify-content: center;
 }
 
-/* 标题样式 */
+/* Title style */
 h1 {
   font-size: 2.5rem;
   color: #102a3c;
@@ -43,7 +43,7 @@ h1 {
   margin-bottom: 2rem;
 }
 
-/* 区域切换按钮 */
+/* Area toggle button */
 .mode-switch {
   display: flex;
   gap: 1rem;
@@ -81,7 +81,7 @@ h1 {
   color: white;
 }
 
-/* 日期选择器 */
+/* Date selector */
 .date-selectors {
   display: flex;
   gap: 1rem;
@@ -107,7 +107,7 @@ h1 {
   background-color: #f0f0f0;
 }
 
-/* 燃油类型按钮 */
+/* Fuel type button */
 .fuel-buttons {
   display: flex;
   justify-content: space-between;
@@ -154,7 +154,7 @@ h1 {
   background-color: #000;
 }
 
-/* 图表区域 */
+/* Chart area */
 .chart-area {
   margin-top: 1rem;
   background: #f3f3f3;
@@ -172,7 +172,7 @@ h1 {
   height: 100%;
 }
 
-/* 错误消息样式 */
+/* Error message style */
 .error-message {
   color: red;
   font-size: 0.8rem;
@@ -183,7 +183,7 @@ h1 {
   color: red;
 }
 
-/* 响应式设计 */
+/* Responsive design */
 @media (max-width: 768px) {
   main {
     flex-direction: column;
@@ -193,7 +193,7 @@ h1 {
     width: 100%;
   }
   
-  /* 小屏幕上燃油按钮调整 */
+  /* Fuel button adjustment on the small screen */
   .fuel-buttons {
     flex-wrap: wrap;
     gap: 10px;

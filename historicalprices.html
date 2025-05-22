@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FuelTrack AU - Historical Prices</title>
-  <!-- 公共样式 -->
+  <!-- public -->
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/tablestyle.css" />
   <link rel="stylesheet" href="css/historical.css" />
   <link rel="stylesheet" href="css/FuelTrack AU.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <!-- 添加Chart.js库 -->
+  <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     body {
@@ -20,7 +20,7 @@
       background-color: #fff;
     }
     
-    /* 导航栏样式修改 */
+    /* Navigation bar style adjustment */
     .header {
       background-color: #102a3c;
       padding: 1rem 3rem;
@@ -44,7 +44,7 @@
       font-weight: 500;
     }
     
-    /* 主内容区域 */
+    /* Main content area */
     main {
       display: flex;
       padding: 0;
@@ -65,7 +65,7 @@
       justify-content: center;
     }
     
-    /* 标题样式 */
+    /* Heading style */
     h1 {
       font-size: 2.5rem;
       color: #102a3c;
@@ -73,7 +73,7 @@
       margin-bottom: 2rem;
     }
     
-    /* 区域切换按钮 */
+    /* Region switch buttons */
     .mode-switch {
       display: flex;
       margin-bottom: 2rem;
@@ -102,7 +102,7 @@
       color: white;
     }
     
-    /* 日期选择器 */
+    /* Date */
     .date-selectors {
       display: flex;
       gap: 1rem;
@@ -128,17 +128,17 @@
       background-color: #f0f0f0;
     }
     
-    /* 燃油类型按钮 - 修改为一行 */
+    /* Fuel type buttons */
     .fuel-buttons {
       display: flex;
-      justify-content: space-between; /* 均匀分布按钮 */
+      justify-content: space-between; 
       margin-bottom: 2rem;
       width: 100%;
     }
     
     .fuel-btn {
-      width: 17%; /* 调整宽度以便五个按钮在一行 */
-      aspect-ratio: 1/1; /* 保持正方形 */
+      width: 17%;
+      aspect-ratio: 1/1;
       border: none;
       font-size: 1.5rem;
       font-weight: bold;
@@ -151,7 +151,7 @@
     }
     
     .fuel-btn.active {
-      box-shadow: 0 0 0 3px #fff, 0 0 0 5px #102a3c; /* 选中状态添加双重边框效果 */
+      box-shadow: 0 0 0 3px #fff, 0 0 0 5px #102a3c;
     }
     
     .fuel-btn[data-fuel="E10"] {
@@ -175,17 +175,17 @@
       background-color: #000;
     }
     
-    /* 图表区域 - 修改为Canvas */
+    /* Chart area */
     .chart-area {
       border: 2px solid #4a90e2;
       border-radius: 5px;
       padding: 1rem;
       width: 100%;
-      height: 500px; /* 固定高度 */
+      height: 500px;
       box-sizing: border-box;
     }
     
-    /* 错误消息样式 */
+    /* Error message style */
     .error-message {
       color: red;
       font-size: 0.8rem;
@@ -195,7 +195,7 @@
       color: red;
     }
     
-    /* 响应式设计 */
+    /* Responsive design */
     @media (max-width: 768px) {
       main {
         flex-direction: column;
@@ -205,7 +205,7 @@
         width: 100%;
       }
       
-      /* 小屏幕上燃油按钮调整 */
+      /* Fuel buttons on small screens */
       .fuel-buttons {
         flex-wrap: wrap;
         gap: 10px;
@@ -235,7 +235,7 @@
 
   <!-- Main Section -->
   <main>
-    <!-- 左侧控制面板 -->
+    <!-- Left control panel -->
     <div class="left-panel">
       <h1>Historical Fuel Price</h1>
 
@@ -270,7 +270,7 @@
       </div>
     </div>
 
-    <!-- 右侧图表区 -->
+    <!-- Right chart area -->
     <div class="right-panel">
       <div class="chart-area">
         <canvas id="chart-canvas"></canvas>
@@ -315,9 +315,8 @@
     </div>
   </footer>
 
-  <!-- 脚本 -->
+  <!-- JavaScript -->
   <script src="js/link.js"></script>
-  <!-- 添加新的JavaScript文件 -->
   <script src="js/dynamic-chart.js"></script>
 </body>
 </html>

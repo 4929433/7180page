@@ -7,12 +7,12 @@
     --gray-color: #ddd;
 }
 
-/* 全局样式设置，确保页面铺满屏幕 */
+/* Global style settings to ensure that the page is full of screens */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: hidden; /* 防止水平滚动 */
+    overflow-x: hidden; 
     width: 100%;
 }
 
@@ -189,13 +189,13 @@ html, body {
 
 /* For the review category positioning */
 .review-category {
-    position: relative; /* 为绝对定位提供参考 */
+    position: relative; 
     margin-bottom: 1rem;
 }
 
-/* 清洁度评分所在的容器 */
+/* Cleanliness rating container */
 .review-category:last-child {
-    margin-bottom: 0; /* 移除底部间距 */
+    margin-bottom: 0; 
 }
 
 .review-category p {
@@ -218,8 +218,8 @@ html, body {
 .submit-btn {
     position: absolute;
     left: 230px;
-    top: 55px; /* 垂直居中 */
-    transform: translateY(-50%); /* 精确垂直居中 */
+    top: 55px; 
+    transform: translateY(-50%); 
     background-color: #e05e32;
     color: white;
     border: none;
@@ -306,7 +306,7 @@ html, body {
     border-radius: 4px;
 }
 
-/* Header styles - 确保铺满整个宽度 */
+/* Header styles */
 .header {
     width: 100%;
     margin: 0;
@@ -340,21 +340,20 @@ footer {
     font-size: 1.1rem;
     margin-bottom: 1rem;
     position: relative;
-    margin-top: 0.5rem; /* 减少顶部边距，使文字靠近顶部边线 */
+    margin-top: 0.5rem; 
 }
 
-/* 给页脚部分添加顶部白色边框 */
+/* footer */
 .footer-section {
     flex: 1;
     min-width: 200px;
     margin-bottom: 1.5rem;
     padding: 0 1rem;
-    border-top: 1px solid white; /* 添加白色的顶部边框 */
-    padding-top: 0.8rem; /* 减少顶部内边距，使内容靠近边线 */
+    border-top: 1px solid white; 
+    padding-top: 0.8rem; 
 }
 
 
-/* 移除页脚标题下划线 */
 .footer-section h4::after {
     content: none;
 }
@@ -464,7 +463,7 @@ footer {
     }
     
     .submit-btn {
-        position: static; /* 在移动设备上恢复正常流 */
+        position: static; 
         display: block;
         margin-top: 15px;
         transform: none;
@@ -505,7 +504,7 @@ footer {
     }
 }
 
-/* 为导航链接添加下划线效果 */
+/* Add an underline effect to navigation links */
 .nav-links a {
     position: relative;
 }

@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="css/tablestyle.css" />
   <link rel="stylesheet" href="css/homepage.css" />
   <link rel="stylesheet" href="css/calculator.css" />
-  <!-- 添加卡片切换的CSS -->
   <link rel="stylesheet" href="css/calculator-cards.css" />
   <link rel="stylesheet" href="css/FuelTrack AU.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -23,7 +22,7 @@
     main {
       flex: 1;
     }
-    /* 确保地图容器有明确的高度和宽度 */
+    /* Ensure the map container has a defined height and width */
     #googleMap {
       width: 75%;
       min-width: 500px;
@@ -33,9 +32,9 @@
     }
   </style>
   
-  <!-- 确保initMap函数在API加载前定义 -->
+  <!-- Ensure the initMap function is defined before the API is loaded -->
   <script>
-    // 地图初始化函数定义
+    // Map initialization function definition
     function initMap() {
       try {
         const defaultLocation = { lat: -27.4698, lng: 153.0251 };
@@ -76,7 +75,7 @@
           infoWindow.open(map);
         }
         
-        // 手动触发resize事件以确保地图正确渲染
+        // Manually trigger the resize event
         setTimeout(function() {
           google.maps.event.trigger(map, 'resize');
         }, 500);
@@ -85,7 +84,7 @@
       }
     }
     
-    // 动态加载Google地图API的函数
+    // Function to dynamically load the Google Maps API
     function loadGoogleMapsAPI() {
       const script = document.createElement('script');
       script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyD9xee3RLxavWyKEEjUm88mfN1tMbL-u0c&callback=initMap";
@@ -98,7 +97,7 @@
       document.head.appendChild(script);
     }
     
-    // 页面加载完成后加载Google地图API
+    // Load Google Maps API after the page has finished loading
     window.addEventListener('DOMContentLoaded', function() {
       loadGoogleMapsAPI();
     });
@@ -155,10 +154,10 @@
         <div class="station-price green">1.56</div>
       </div>
 
-      <!-- 修改：添加ID和可点击的样式 -->
+      <!-- Update: Add ID and clickable style -->
       <div class="section-title" id="otherOptionsToggle">Other Options</div>
       
-      <!-- 修改：添加ID以便JavaScript操作 -->
+      <!-- Update: Add ID for JavaScript operation -->
       <div class="station-card-list" id="stationCardList">
         <div class="station-card">
           <div>
@@ -199,7 +198,7 @@
     </div>
   </main>
 
-  <!-- 页脚 - 可折叠 -->
+  <!-- Footer -->
   <footer class="collapsible-footer">
     <button class="footer-toggle" id="footerToggle">
       More Info <i class="fas fa-chevron-down"></i>
@@ -242,9 +241,9 @@
   </footer>
 
   <script src="js/link.js"></script>
-  <!-- 修改import value.js的引用方式 -->
+  <!-- Modify the import method for value.js -->
   <script>
-    // 安全地加载import value.js
+    // import value.js
     document.addEventListener('DOMContentLoaded', function() {
       const script = document.createElement('script');
       script.src = "js/import value.js";
@@ -254,9 +253,8 @@
       document.body.appendChild(script);
     });
   </script>
-  <!-- 添加卡片切换的JavaScript -->
+  <!-- JavaScript -->
   <script src="js/card-toggle.js"></script>
-  <!-- 添加计算器页面特定的JavaScript -->
   <script src="js/calculator.js"></script>
 </body>
 </html>

@@ -135,33 +135,33 @@ img {
   }
 }
 
-/* 当前页面导航标记 */
+/* Page navigation tags */
 .nav-links a.current {
-  color: white; /* 保持文字颜色为白色 */
-  font-weight: 600; /* 略微加粗 */
+  color: white; 
+  font-weight: 600; 
 }
 
 .nav-links a.current::after {
   content: "";
   position: absolute;
-  width: 100%; /* 下划线占满整个链接宽度 */
+  width: 100%; 
   height: 2px;
   bottom: -4px;
   left: 0;
-  background-color: white; /* 白色下划线 */
+  background-color: white; 
 }
 
-/* 确保悬停效果不会与当前页面标记冲突 */
+/* Make sure that the hover effect does not conflict */
 .nav-links a:not(.current):hover::after {
   width: 100%;
-  background-color: #f5f5f5; /* 保持悬停时的下划线是浅白色 */
+  background-color: #f5f5f5; 
 }
 
-/* 保持点击激活状态的效果，但与current分开 */
+/* Stay click-activated */
 .nav-links a.active:not(.current) {
-  color: #fcbf49; /* 黄色文字 */
+  color: #fcbf49; 
 }
 
 .nav-links a.active:not(.current)::after {
-  background-color: #fcbf49; /* 黄色下划线 */
+  background-color: #fcbf49; 
 }

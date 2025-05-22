@@ -107,7 +107,7 @@ select.error {
   outline-offset: 2px;
 }
 
-/* 专用圆形START按钮 */
+/* Special round START button */
 .BTN-circle {
   display: inline-flex;
   justify-content: center;
@@ -119,13 +119,13 @@ select.error {
   color: var(--text-color, #ffffff);
   background-color: var(--accent-color, #d84900);
   border: 2px solid transparent;
-  border-radius: 50%;  /* 确保按钮是圆形 */
+  border-radius: 50%;  
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  padding: 0;  /* 移除padding以防止扭曲 */
+  padding: 0;  
 }
 
 .BTN-circle:hover {
