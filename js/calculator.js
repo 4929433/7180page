@@ -1,7 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("✅ DOM loaded, initializing...");
   initCollapsibleFooter();
   initCalculation();
+  addCardStyles();
 });
 
 function initCollapsibleFooter() {
@@ -23,25 +24,14 @@ function initCollapsibleFooter() {
 function initCalculation() {
   const stored = JSON.parse(localStorage.getItem('fuelCalcResult')) || {};
   const fuelTypeEl = document.getElementById('fuelType');
-  const inputEl    = document.getElementById('inputValue');
-  const buttons    = document.querySelectorAll('.calc-type button');
-  const btnCalc    = document.querySelector('.calculate-btn');
+  const inputEl = document.getElementById('inputValue');
+  const buttons = document.querySelectorAll('.calc-type button');
+  const btnCalc = document.querySelector('.calculate-btn');
 
-  // 1) 如果有 localStorage 数据，先预填并渲染
-  if (stored.stations) {
-    fuelTypeEl.value = stored.fuelType;
-    inputEl.value    = stored.inputValue;
-    buttons.forEach(btn => {
-      btn.classList.toggle('active',
-        stored.amountType === 'money'
-          ? btn.textContent.includes('Price')
-          : btn.textContent.includes('Liters')
-      );
-    });
-    renderCards(stored);
-  }
+  // 页面加载时立即获取所有站点数据显示
+  loadInitialStations();
 
-  // 2) 切换按钮样式
+  // 切换按钮样式
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('active'));
@@ -49,10 +39,10 @@ function initCalculation() {
     });
   });
 
-  // 3) 点击 Calculate → 重新拉 API → 渲染
+  // Calculate按钮点击事件
   btnCalc.addEventListener('click', () => {
-    const fuelType  = fuelTypeEl.value;
-    const inputVal  = parseFloat(inputEl.value);
+    const fuelType = fuelTypeEl.value;
+    const inputVal = parseFloat(inputEl.value);
     const amountType = document.querySelector('.calc-type button.active')
       .textContent.includes('Price') ? 'money' : 'volume';
 
@@ -64,16 +54,15 @@ function initCalculation() {
     fetch('https://sheetdb.io/api/v1/ixwxxwtb81gts')
       .then(r => r.json())
       .then(data => {
-        const stations = data.map(st => {
+        const stations = data.map((st, index) => {
           const raw = parseFloat(st[`${fuelType}_price`]);
           if (!raw || isNaN(raw)) return null;
           const price = raw / 100;
           return {
-            name:  st.name,
+            name: st.name,
             price,
-            total: amountType === 'volume'
-              ? price * inputVal
-              : inputVal / price
+            arrayIndex: index,
+            total: amountType === 'volume' ? price * inputVal : inputVal / price
           };
         }).filter(Boolean);
 
@@ -86,106 +75,231 @@ function initCalculation() {
   });
 }
 
+function loadInitialStations() {
+  console.log("📊 Loading initial stations...");
+  fetch('https://sheetdb.io/api/v1/ixwxxwtb81gts')
+    .then(r => r.json())
+    .then(data => {
+      console.log("📊 API data loaded, total stations:", data.length);
+      
+      if (data && data.length > 0) {
+        const stations = data.slice(0, 5).map((st, index) => {
+          const raw = parseFloat(st['91_price']);
+          if (!raw || isNaN(raw)) return null;
+          const price = raw / 100;
+          
+          return {
+            name: st.name,
+            price,
+            arrayIndex: index
+          };
+        }).filter(Boolean);
+
+        console.log("📊 Processed stations:", stations.map(s => ({name: s.name, index: s.arrayIndex})));
+        renderInitialCards(stations);
+      }
+    })
+    .catch(err => {
+      console.error('❌ Failed to load initial stations:', err);
+    });
+}
+
+function renderInitialCards(stations) {
+  if (!stations.length) return;
+
+  console.log("🎨 Rendering initial cards...");
+  stations.sort((a, b) => a.price - b.price);
+
+  // 最低价卡片
+  const lowest = stations[0];
+  const topCard = document.querySelector('.station-card.highlighted');
+  
+  if (topCard) {
+    topCard.innerHTML = `
+      <div>
+        <div class="station-name">${lowest.name}</div>
+        <div class="station-distance">0.2km</div>
+        <div class="station-nav">Navigation</div>
+      </div>
+      <div>
+        <div class="station-price green">$${lowest.price.toFixed(3)}/L</div>
+      </div>
+    `;
+    topCard.setAttribute('data-index', lowest.arrayIndex);
+    console.log("🏆 Top card:", lowest.name, "Index:", lowest.arrayIndex);
+  }
+
+  // 其他卡片
+  const list = document.getElementById('stationCardList');
+  if (list) {
+    list.innerHTML = '';
+    stations.slice(1).forEach((st, index) => {
+      const card = document.createElement('div');
+      card.className = 'station-card';
+      card.setAttribute('data-index', st.arrayIndex);
+      
+      card.innerHTML = `
+        <div>
+          <div class="station-name">${st.name}</div>
+          <div class="station-distance">${(0.3 + index * 0.2).toFixed(1)}km</div>
+          <div class="station-nav">Navigation</div>
+        </div>
+        <div>
+          <div class="station-price green">$${st.price.toFixed(3)}/L</div>
+        </div>
+      `;
+      list.appendChild(card);
+      console.log("🎫 Card added:", st.name, "Index:", st.arrayIndex);
+    });
+  }
+
+  // 添加点击事件
+  addCardClicks();
+}
+
 function renderCards({ amountType, inputValue, stations }) {
   if (!stations.length) return;
 
-  // 按单价升序
+  console.log("🎨 Rendering calculated cards...");
   stations.sort((a, b) => a.price - b.price);
 
-  // 顶部最低价卡片
+  // 最低价卡片
   const lowest = stations[0];
   const topCard = document.querySelector('.station-card.highlighted');
   const topDetail = amountType === 'money'
     ? `${(inputValue / lowest.price).toFixed(2)} L (for $${inputValue})`
     : `$${(lowest.price * inputValue).toFixed(2)} (for ${inputValue} L)`;
 
-  topCard.innerHTML = `
-    <div class="station-name">${lowest.name}</div>
-    <div>
-      <div class="station-price green">$${lowest.price.toFixed(3)}/L</div>
-      <div class="station-price-detail">${topDetail}</div>
-    </div>
-  `;
-
-  // 其余卡片
-  const list = document.getElementById('stationCardList');
-  list.innerHTML = '';
-  stations.slice(1).forEach(st => {
-    const detail = amountType === 'money'
-      ? `${(inputValue / st.price).toFixed(2)} L (for $${inputValue})`
-      : `$${(st.price * inputValue).toFixed(2)} (for ${inputValue} L)`;
-    const card = document.createElement('div');
-    card.className = 'station-card';
-    card.innerHTML = `
-      <div class="station-name">${st.name}</div>
+  if (topCard) {
+    topCard.innerHTML = `
       <div>
-        <div class="station-price green">$${st.price.toFixed(3)}/L</div>
-        <div class="station-price-detail">${detail}</div>
+        <div class="station-name">${lowest.name}</div>
+        <div class="station-distance">0.2km</div>
+        <div class="station-nav">Navigation</div>
+      </div>
+      <div>
+        <div class="station-price green">$${lowest.price.toFixed(3)}/L</div>
+        <div class="station-price-detail">${topDetail}</div>
       </div>
     `;
-    list.appendChild(card);
-  });
-}
-
-// 1️⃣ 加载地图并添加多个加油站
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("googleMap"), {
-    center: { lat: -27.4698, lng: 153.0251 },
-    zoom: 14,
-  });
-
-  const infoWindow = new google.maps.InfoWindow();
-
-  // 用户定位
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        const userPos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        };
-
-        new google.maps.Marker({
-          position: userPos,
-          map,
-          title: "You are here",
-          icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-        });
-
-        map.setCenter(userPos);
-      },
-      function () {
-        console.warn("Geolocation failed");
-      }
-    );
+    topCard.setAttribute('data-index', lowest.arrayIndex);
   }
 
-  // 2️⃣ 添加加油站标记
-  const stationCards = document.querySelectorAll(".station-card");
+  // 其他卡片
+  const list = document.getElementById('stationCardList');
+  if (list) {
+    list.innerHTML = '';
+    stations.slice(1).forEach((st, index) => {
+      const detail = amountType === 'money'
+        ? `${(inputValue / st.price).toFixed(2)} L (for $${inputValue})`
+        : `$${(st.price * inputValue).toFixed(2)} (for ${inputValue} L)`;
+      
+      const card = document.createElement('div');
+      card.className = 'station-card';
+      card.setAttribute('data-index', st.arrayIndex);
+      
+      card.innerHTML = `
+        <div>
+          <div class="station-name">${st.name}</div>
+          <div class="station-distance">${(0.3 + index * 0.1).toFixed(1)}km</div>
+          <div class="station-nav">Navigation</div>
+        </div>
+        <div>
+          <div class="station-price green">$${st.price.toFixed(3)}/L</div>
+          <div class="station-price-detail">${detail}</div>
+        </div>
+      `;
+      list.appendChild(card);
+    });
+  }
 
-  stationCards.forEach((card) => {
-    const lat = parseFloat(card.getAttribute("data-lat"));
-    const lng = parseFloat(card.getAttribute("data-lng"));
-    const name = card.getAttribute("data-name");
+  // 重新添加点击事件
+  addCardClicks();
+}
 
-    if (!isNaN(lat) && !isNaN(lng)) {
-      const marker = new google.maps.Marker({
-        position: { lat, lng },
-        map,
-        title: name,
-      });
-
-      marker.addListener("click", () => {
-        infoWindow.setContent(name);
-        infoWindow.open(map, marker);
-      });
-
-      // 3️⃣ 点击“Navigation”按钮跳转 Google Maps 导航
-      const navButton = card.querySelector(".station-nav");
-      navButton.style.cursor = "pointer";
-      navButton.addEventListener("click", () => {
-        window.open(`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`, "_blank");
-      });
-    }
+function addCardClicks() {
+  console.log("🔗 Adding click events...");
+  const cards = document.querySelectorAll('.station-card');
+  console.log("🔗 Found cards:", cards.length);
+  
+  cards.forEach((card, i) => {
+    // 移除旧的事件监听器
+    card.onclick = null;
+    
+    // 添加点击事件
+    card.addEventListener('click', function(e) {
+      console.log("🖱️ Card clicked:", i);
+      
+      // 检查是否点击了Navigation按钮
+      if (e.target.classList.contains('station-nav') || e.target.closest('.station-nav')) {
+        console.log("🚫 Navigation button clicked");
+        e.stopPropagation();
+        
+        const stationName = this.querySelector('.station-name').textContent;
+        const googleMapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(stationName + ' fuel station')}`;
+        window.open(googleMapsUrl, '_blank');
+        return;
+      }
+      
+      // 获取索引并跳转
+      const index = this.getAttribute('data-index');
+      const stationName = this.querySelector('.station-name').textContent;
+      
+      console.log("🎯 Redirecting:", {index, stationName});
+      
+      if (index !== null) {
+        console.log("🎯 Going to: station-detail.html?id=" + index);
+        window.location.href = `station-detail.html?id=${index}`;
+      } else {
+        console.error("❌ No index found");
+      }
+    });
+    
+    // 添加悬停效果
+    card.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+      this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = 'none';
+    });
+    
+    // 验证索引
+    const index = card.getAttribute('data-index');
+    console.log(`🔗 Card ${i} index:`, index);
   });
+  
+  console.log("✅ Click events added");
+}
+
+function addCardStyles() {
+  if (document.getElementById('card-styles')) return;
+  
+  const style = document.createElement('style');
+  style.id = 'card-styles';
+  style.textContent = `
+    .station-card {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .station-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .station-nav {
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .station-nav:hover {
+      background-color: #007bff;
+      color: white;
+      transform: scale(1.05);
+    }
+  `;
+  document.head.appendChild(style);
 }
