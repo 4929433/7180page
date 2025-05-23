@@ -28,7 +28,7 @@ function initMainPageFunctions() {
   
   // Check whether the necessary elements exist
   if (!amountTypeSelect || !unitIcon || !fuelTypeSelect || !valueInput || !startBtn) {
-    console.log("主页表单元素未找到，跳过初始化");
+    console.log("Home page form element not found, skip initialization");
     return;
   }
   
