@@ -141,7 +141,7 @@ function initCalculatorFunctions() {
   
   // Check whether the necessary elements exist
   if (!calculateBtn || !fuelTypeEl || !inputEl) {
-    console.log("计算器页面元素未找到，跳过初始化");
+    console.log("The element of the calculator page was not found. Skip the initialization.");
     return;
   }
   
