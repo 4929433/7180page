@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCollapsibleFooter();
   initCalculation();
   addCardStyles();
+  initPopups();
 });
 
 function initCollapsibleFooter() {
@@ -19,6 +20,56 @@ function initCollapsibleFooter() {
 
   footer.classList.remove('expanded');
   footerToggle.innerHTML = 'More Info <i class="fas fa-chevron-down"></i>';
+}
+
+// Handle popup displays and controls
+function initPopups() {
+  const privacyPopup = document.getElementById('privacyPopup');
+  const algorithmPopup = document.getElementById('algorithmPopup');
+  
+  // Show privacy popup on first visit
+  if (!localStorage.getItem('privacyNoticeShown')) {
+    setTimeout(() => {
+      privacyPopup.classList.add('show');
+    }, 1000);
+  }
+
+  // Privacy popup close handlers
+  document.getElementById('privacyClose').addEventListener('click', () => {
+    privacyPopup.classList.remove('show');
+    localStorage.setItem('privacyNoticeShown', 'true');
+  });
+
+  document.getElementById('privacyGotIt').addEventListener('click', () => {
+    privacyPopup.classList.remove('show');
+    localStorage.setItem('privacyNoticeShown', 'true');
+  });
+
+  // Algorithm help button handler
+  document.getElementById('algorithmHelpBtn').addEventListener('click', () => {
+    algorithmPopup.classList.add('show');
+  });
+
+  // Algorithm popup close handlers
+  document.getElementById('algorithmClose').addEventListener('click', () => {
+    algorithmPopup.classList.remove('show');
+  });
+
+  document.getElementById('algorithmGotIt').addEventListener('click', () => {
+    algorithmPopup.classList.remove('show');
+  });
+
+  // Close popups when clicking outside
+  [privacyPopup, algorithmPopup].forEach(popup => {
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.classList.remove('show');
+        if (popup === privacyPopup) {
+          localStorage.setItem('privacyNoticeShown', 'true');
+        }
+      }
+    });
+  });
 }
 
 function initCalculation() {
@@ -123,7 +174,7 @@ function renderInitialCards(stations) {
       <div>
         <div class="station-name">${lowest.name}</div>
         <div class="station-distance">0.2km</div>
-        <div class="station-nav">Navigation</div>
+        <div class="station-nav" aria-label="Get directions to ${lowest.name}">Navigation</div>
       </div>
       <div>
         <div class="station-price green">$${lowest.price.toFixed(3)}/L</div>
@@ -154,7 +205,7 @@ function renderInitialCards(stations) {
         <div>
           <div class="station-name">${st.name}</div>
           <div class="station-distance">${(0.3 + index * 0.2).toFixed(1)}km</div>
-          <div class="station-nav">Navigation</div>
+          <div class="station-nav" aria-label="Get directions to ${st.name}">Navigation</div>
         </div>
         <div>
           <div class="station-price ${priceColorClass}">$${st.price.toFixed(3)}/L</div>
@@ -191,7 +242,7 @@ function renderCards({ amountType, inputValue, stations }) {
       <div>
         <div class="station-name">${lowest.name}</div>
         <div class="station-distance">0.2km</div>
-        <div class="station-nav">Navigation</div>
+        <div class="station-nav" aria-label="Get directions to ${lowest.name}">Navigation</div>
       </div>
       <div>
         <div class="station-price green">$${lowest.price.toFixed(3)}/L</div>
@@ -226,7 +277,7 @@ function renderCards({ amountType, inputValue, stations }) {
         <div>
           <div class="station-name">${st.name}</div>
           <div class="station-distance">${(0.3 + index * 0.1).toFixed(1)}km</div>
-          <div class="station-nav">Navigation</div>
+          <div class="station-nav" aria-label="Get directions to ${st.name}">Navigation</div>
         </div>
         <div>
           <div class="station-price ${priceColorClass}">$${st.price.toFixed(3)}/L</div>
