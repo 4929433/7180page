@@ -110,6 +110,10 @@ function renderInitialCards(stations) {
   console.log("🎨 Rendering initial cards...");
   stations.sort((a, b) => a.price - b.price);
 
+  // Find out the lowest price and the highest price
+  const lowestPrice = stations[0].price;
+  const highestPrice = stations[stations.length - 1].price;
+
   // Lowest price card
   const lowest = stations[0];
   const topCard = document.querySelector('.station-card.highlighted');
@@ -126,7 +130,7 @@ function renderInitialCards(stations) {
       </div>
     `;
     topCard.setAttribute('data-index', lowest.arrayIndex);
-    console.log("🏆 Top card:", lowest.name, "Index:", lowest.arrayIndex);
+    console.log("🏆 Top card:", lowest.name, "Index:", lowest.arrayIndex, "Price:", lowest.price.toFixed(3));
   }
 
   // Other cards
@@ -138,6 +142,14 @@ function renderInitialCards(stations) {
       card.className = 'station-card';
       card.setAttribute('data-index', st.arrayIndex);
       
+      // Set the color category according to the price
+      let priceColorClass = 'green'; // default is green
+      if (st.price === highestPrice) {
+        priceColorClass = 'red'; // The highest price is red
+      } else if (st.price === lowestPrice) {
+        priceColorClass = 'green'; // The lowest price is green
+      }
+      
       card.innerHTML = `
         <div>
           <div class="station-name">${st.name}</div>
@@ -145,11 +157,11 @@ function renderInitialCards(stations) {
           <div class="station-nav">Navigation</div>
         </div>
         <div>
-          <div class="station-price green">$${st.price.toFixed(3)}/L</div>
+          <div class="station-price ${priceColorClass}">$${st.price.toFixed(3)}/L</div>
         </div>
       `;
       list.appendChild(card);
-      console.log("🎫 Card added:", st.name, "Index:", st.arrayIndex);
+      console.log("🎫 Card added:", st.name, "Index:", st.arrayIndex, "Price:", st.price.toFixed(3), "Color:", priceColorClass);
     });
   }
 
@@ -162,6 +174,10 @@ function renderCards({ amountType, inputValue, stations }) {
 
   console.log("🎨 Rendering calculated cards...");
   stations.sort((a, b) => a.price - b.price);
+
+  // Find out the lowest price and the highest price
+  const lowestPrice = stations[0].price;
+  const highestPrice = stations[stations.length - 1].price;
 
   // Lowest price card
   const lowest = stations[0];
@@ -194,6 +210,14 @@ function renderCards({ amountType, inputValue, stations }) {
         ? `${(inputValue / st.price).toFixed(2)} L (for $${inputValue})`
         : `$${(st.price * inputValue).toFixed(2)} (for ${inputValue} L)`;
       
+      // Set the color category according to the price
+      let priceColorClass = 'green'; //  default is green
+      if (st.price === highestPrice) {
+        priceColorClass = 'red'; // The highest price is red
+      } else if (st.price === lowestPrice) {
+        priceColorClass = 'green'; // The lowest price is green
+      }
+      
       const card = document.createElement('div');
       card.className = 'station-card';
       card.setAttribute('data-index', st.arrayIndex);
@@ -205,11 +229,12 @@ function renderCards({ amountType, inputValue, stations }) {
           <div class="station-nav">Navigation</div>
         </div>
         <div>
-          <div class="station-price green">$${st.price.toFixed(3)}/L</div>
+          <div class="station-price ${priceColorClass}">$${st.price.toFixed(3)}/L</div>
           <div class="station-price-detail">${detail}</div>
         </div>
       `;
       list.appendChild(card);
+      console.log("🎫 Calculated card added:", st.name, "Price:", st.price.toFixed(3), "Color:", priceColorClass);
     });
   }
 
