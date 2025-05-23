@@ -126,7 +126,7 @@
   font-size: 16px;
 }
 
-/* Green Lowest Price */
+/* Green banner for lowest price section */
 .lowest-price-banner {
   background-color: #3aa832;
   color: white;
@@ -138,7 +138,7 @@
   font-size: 18px;
 }
 
-/* Card uniform style */
+/* Shared styles for all station cards */
 .station-card {
   display: flex;
   justify-content: space-between;
@@ -181,12 +181,17 @@
   align-self: center;
 }
 
+/* Price color styles for different price levels */
 .station-price.green {
-  color: #3aa832;
+  color: #3aa832 !important; /* Green for lowest prices */
 }
 
 .station-price.red {
-  color: #d03d00;
+  color: #e74c3c !important; /* Red for highest prices */
+}
+
+.station-price.purple {
+  color: #9b59b6 !important; /* Purple as alternative color */
 }
 
 .section-title {
@@ -200,7 +205,7 @@
   font-size: 18px;
 }
 
-/* Foldable Footer style */
+/* Styles for collapsible footer */
 .collapsible-footer {
   position: relative;
 }
@@ -246,6 +251,7 @@
 .collapsible-footer.expanded .footer-toggle i {
   transform: rotate(180deg);
 }
+
 .station-price-detail {
   font-size: 0.9rem;
   color: #3aa832;
@@ -319,6 +325,7 @@ html, body {
   cursor: pointer;
 }
 
+/* Mobile responsive design */
 @media (max-width: 768px) {
   .calculator-page {
     flex-direction: column;
@@ -326,7 +333,7 @@ html, body {
 
   #googleMap {
     width: 100%;
-    height:  100vh; 
+    height: 50vh; /* Mobile map height adjustment */
     position: relative;
   }
 
