@@ -124,7 +124,7 @@
     <div class="info-section">
       <div class="fuel-controls">
         <label for="fuelType">Fuel Type</label>
-        <select id="fuelType">
+        <select id="fuelType" aria-label="Select fuel type">
           <option>91</option>
           <option>95</option>
           <option>98</option>
@@ -134,36 +134,41 @@
 
         <label>Calculation Type</label>
         <div class="calc-type">
-          <button class="active">By Price</button>
-          <button>By Liters</button>
+          <button class="active" aria-label="Calculate by price - enter dollar amount">By Price</button>
+          <button aria-label="Calculate by volume - enter liter amount">By Liters</button>
         </div>
 
         <label for="inputValue">Enter Value</label>
-        <input id="inputValue" type="text" />
+        <input id="inputValue" type="text" aria-label="Enter dollar amount or liters" />
 
-        <button class="calculate-btn">Calculate</button>
+        <button class="calculate-btn" aria-label="Find cheapest fuel stations">Calculate</button>
       </div>
 
-      <div class="lowest-price-banner">Lowest Price</div>
+      <div class="lowest-price-banner">
+        Lowest Price
+        <!-- Help button to show algorithm info -->
+        <button class="help-btn" id="algorithmHelpBtn" aria-label="Show how we sort results">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
+      
       <div class="station-card highlighted">
         <div>
           <div class="station-name">Pearl Energy Moorooka</div>
           <div class="station-distance">0.2km</div>
-          <div class="station-nav">Navigation</div>
+          <div class="station-nav" aria-label="Get directions to this station">Navigation</div>
         </div>
         <div class="station-price green">1.56</div>
       </div>
 
-      <!-- Update: Add ID and clickable style -->
       <div class="section-title" id="otherOptionsToggle">Other Options</div>
       
-      <!-- Update: Add ID for JavaScript operation -->
       <div class="station-card-list" id="stationCardList">
         <div class="station-card">
           <div>
             <div class="station-name">7-Eleven</div>
             <div class="station-distance">0.8km</div>
-            <div class="station-nav">Navigation</div>
+            <div class="station-nav" aria-label="Get directions to this station">Navigation</div>
           </div>
           <div class="station-price red">1.57</div>
         </div>
@@ -172,7 +177,7 @@
           <div>
             <div class="station-name">bp</div>
             <div class="station-distance">0.9km</div>
-            <div class="station-nav">Navigation</div>
+            <div class="station-nav" aria-label="Get directions to this station">Navigation</div>
           </div>
           <div class="station-price red">1.66</div>
         </div>
@@ -181,7 +186,7 @@
           <div>
             <div class="station-name">bp</div>
             <div class="station-distance">0.9km</div>
-            <div class="station-nav">Navigation</div>
+            <div class="station-nav" aria-label="Get directions to this station">Navigation</div>
           </div>
           <div class="station-price red">1.66</div>
         </div>
@@ -190,13 +195,64 @@
           <div>
             <div class="station-name">bp</div>
             <div class="station-distance">0.9km</div>
-            <div class="station-nav">Navigation</div>
+            <div class="station-nav" aria-label="Get directions to this station">Navigation</div>
           </div>
           <div class="station-price red">1.66</div>
         </div>
       </div>
     </div>
   </main>
+
+  <!-- Privacy popup shows on first visit -->
+  <div class="popup-overlay" id="privacyPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Your Privacy Matters</h3>
+        <button class="popup-close" id="privacyClose" aria-label="Close privacy notice">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="popup-body">
+        <p>We only use your location to find nearby fuel stations. No personal data is stored on our servers.</p>
+        <ul>
+          <li>✓ Location used only for station search</li>
+          <li>✓ No tracking or personal profiles</li>
+          <li>✓ Data stays on your device</li>
+        </ul>
+      </div>
+      <div class="popup-footer">
+        <button class="popup-btn" id="privacyGotIt">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Algorithm info popup shows when help button clicked -->
+  <div class="popup-overlay" id="algorithmPopup">
+    <div class="popup-content">
+      <div class="popup-header">
+        <i class="fas fa-sort-amount-down"></i>
+        <h3>How We Sort Results</h3>
+        <button class="popup-close" id="algorithmClose" aria-label="Close algorithm explanation">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="popup-body">
+        <p><strong>Primary Sort:</strong> Price (lowest to highest)</p>
+        <p><strong>Secondary Sort:</strong> Distance (closest first for same price)</p>
+        <div class="algorithm-example">
+          <p><strong>Example:</strong></p>
+          <p>Station A: $1.45/L, 0.5km → Rank #1</p>
+          <p>Station B: $1.45/L, 1.2km → Rank #2</p>
+          <p>Station C: $1.47/L, 0.3km → Rank #3</p>
+        </div>
+        <p><strong>Fair & Transparent:</strong> No brand gets special treatment</p>
+      </div>
+      <div class="popup-footer">
+        <button class="popup-btn" id="algorithmGotIt">Got it</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer class="collapsible-footer">
@@ -237,6 +293,8 @@
     <div class="footer-bottom">
          <p>FuelTrack AU</p>
           <p>Smart Fuel Decisions Start here</p>
+          <!-- Where our data comes from -->
+          <p><small>Price data from SheetDB API • Location services by Google Maps</small></p>
     </div>
   </footer>
 
@@ -248,7 +306,7 @@
       const script = document.createElement('script');
       script.src = "js/import value.js";
       script.onerror = function() {
-        console.error("导入value.js脚本加载失败");
+        console.error("Import value.js script loading failure");
       };
       document.body.appendChild(script);
     });
