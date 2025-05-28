@@ -1,10 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
   console.log("✅ DOM loaded, initializing...");
   initCollapsibleFooter();
+  
+  // First check if there is data passed from homepage
+  const storedData = JSON.parse(localStorage.getItem('fuelCalcResult'));
+  if (storedData) {
+    console.log("📦 Found stored calculation data:", storedData);
+    // Fill form and display results
+    applyStoredData(storedData);
+  } else {
+    // Load default stations when no stored data
+    loadInitialStations();
+  }
+  
   initCalculation();
   addCardStyles();
   initPopups();
 });
+
+function applyStoredData(data) {
+  console.log("🔄 Applying stored data to form...");
+  
+  // Fill form fields
+  const fuelTypeEl = document.getElementById('fuelType');
+  const inputEl = document.getElementById('inputValue');
+  const buttons = document.querySelectorAll('.calc-type button');
+  
+  if (fuelTypeEl && data.fuelType) {
+    fuelTypeEl.value = data.fuelType;
+    console.log("✅ Set fuel type:", data.fuelType);
+  }
+  
+  if (inputEl && data.inputValue) {
+    inputEl.value = data.inputValue;
+    console.log("✅ Set input value:", data.inputValue);
+  }
+  
+  // Set calculation type buttons
+  buttons.forEach(btn => {
+    btn.classList.remove('active');
+    if (data.amountType === 'money' && btn.textContent.includes('Price')) {
+      btn.classList.add('active');
+      console.log("✅ Set calculation type: By Price");
+    } else if (data.amountType === 'volume' && btn.textContent.includes('Liters')) {
+      btn.classList.add('active');
+      console.log("✅ Set calculation type: By Liters");
+    }
+  });
+  
+  // Display calculation results
+  if (data.stations && data.stations.length > 0) {
+    console.log("📊 Displaying stored calculation results...");
+    renderCards(data);
+    
+    // Clear localStorage to avoid reusing old data
+    localStorage.removeItem('fuelCalcResult');
+    console.log("🗑️ Cleared stored data");
+  } else {
+    console.log("⚠️ No stations data found, loading defaults");
+    loadInitialStations();
+  }
+}
 
 function initCollapsibleFooter() {
   const footerToggle = document.getElementById('footerToggle');
@@ -79,9 +135,6 @@ function initCalculation() {
   const buttons = document.querySelectorAll('.calc-type button');
   const btnCalc = document.querySelector('.calculate-btn');
 
-  // Get all site data immediately when the page loads
-  loadInitialStations();
-
   // Toggle button style
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -102,6 +155,8 @@ function initCalculation() {
       return;
     }
 
+    console.log("🔄 Manual calculation triggered:", {fuelType, inputVal, amountType});
+
     fetch('https://sheetdb.io/api/v1/ixwxxwtb81gts')
       .then(r => r.json())
       .then(data => {
@@ -117,7 +172,9 @@ function initCalculation() {
           };
         }).filter(Boolean);
 
-        renderCards({ fuelType, amountType, inputValue: inputVal, stations });
+        const calcData = { fuelType, amountType, inputValue: inputVal, stations };
+        console.log("📊 Manual calculation complete, rendering results...");
+        renderCards(calcData);
       })
       .catch(err => {
         console.error(err);
